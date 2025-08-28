@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Grid - Rosina Possingham</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background: #fefefe;
+            line-height: 1.6;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(254, 254, 254, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e8e8e8;
+            padding: 20px 40px;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .shop-title {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #2c2c2c;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: #d0d0d0;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0);
+            transition: background 0.3s ease;
+        }
+
+        .product-card:hover .product-image::before {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: #2c2c2c;
+        }
+
+        .product-subtitle {
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c2c2c;
+            letter-spacing: 0.5px;
+        }
+
+        /* Product background images */
+        .product-1 { background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg'); }
+        .product-2 { background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg'); }
+        .product-3 { background-image: url('../images/TFL/20230930_127523-scaled.jpg'); }
+        .product-4 { background-image: url('../images/WHACK PHOTOGRAPHY/Artist Taskforce 22.jpg'); }
+        .product-5 { background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2395-Edit-7.jpg'); }
+        .product-6 { background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_34°5415.922S-138°3616.622E-sideroxylon-in-magenta-1366x2048.jpg'); }
+        .product-7 { background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2417-Edit-2.jpg'); }
+        .product-8 { background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2471-Edit-3.jpg'); }
+        .product-9 { background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_citriodora-in-blue-scaled.jpg'); }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+            
+            .shop-title {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .main-content {
+                padding: 40px 20px;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+            
+            .product-image {
+                height: 250px;
+            }
+            
+            .product-info {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="back-link">← Home</a>
+            <h1 class="shop-title">SHOP</h1>
+            <nav class="nav-links">
+                <a href="#collections">Collections</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="products-grid">
+            <div class="product-card" onclick="location.href='product.html'">
+                <div class="product-image product-1"></div>
+                <div class="product-info">
+                    <h3 class="product-title">NANTU-WAMA</h3>
+                    <p class="product-subtitle">Not Alive in Red - Limited Edition Print</p>
+                    <p class="product-price">$280</p>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html'">
+                <div class="product-image product-2"></div>
+                <div class="product-info">
+                    <h3 class="product-title">WORKSHOP SERIES</h3>
+                    <p class="product-subtitle">Still Life Study #1 - Archival Print</p>
+                    <p class="product-price">$220</p>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html'">
+                <div class="product-image product-3"></div>
+                <div class="product-info">
+                    <h3 class="product-title">TRANSPORT</h3>
+                    <p class="product-subtitle">For London Collection - Fine Art Print</p>
+                    <p class="product-price">$320</p>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html'">
+                <div class="product-image product-4"></div>
+                <div class="product-info">
+                    <h3 class="product-title">ARTIST TASKFORCE</h3>
+                    <p class="product-subtitle">Documentary Series - Giclée Print</p>
+                    <p class="product-price">$180</p>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html'">
+                <div class="product-image product-5"></div>
+                <div class="product-info">
+                    <h3 class="product-title">EDIT SERIES</h3>
+                    <p class="product-subtitle">Workshop Study #7 - Museum Quality</p>
+                    <p class="product-price">$240</p>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html'">
+                <div class="product-image product-6"></div>
+                <div class="product-info">
+                    <h3 class="product-title">SIDEROXYLON</h3>
+                    <p class="product-subtitle">In Magenta - Botanical Series</p>
+                    <p class="product-price">$290</p>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html'">
+                <div class="product-image product-7"></div>
+                <div class="product-info">
+                    <h3 class="product-title">CONTEMPLATION</h3>
+                    <p class="product-subtitle">Workshop Study #2 - Limited Edition</p>
+                    <p class="product-price">$260</p>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html'">
+                <div class="product-image product-8"></div>
+                <div class="product-info">
+                    <h3 class="product-title">PROCESS</h3>
+                    <p class="product-subtitle">Workshop Study #3 - Archival Print</p>
+                    <p class="product-price">$210</p>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html'">
+                <div class="product-image product-9"></div>
+                <div class="product-info">
+                    <h3 class="product-title">CITRIODORA</h3>
+                    <p class="product-subtitle">In Blue - Botanical Series</p>
+                    <p class="product-price">$280</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product - Rosina Possingham</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background: linear-gradient(135deg, #d73027, #f46d43);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: background 1s ease;
+        }
+
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 50px 60px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: opacity 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            padding-top: 140px;
+        }
+
+        .image-section {
+            padding: 0 80px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-image {
+            width: 100%;
+            max-width: 600px;
+            aspect-ratio: 4/5;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 4px solid rgba(255,255,255,0.8);
+            transition: all 0.6s ease;
+            margin-bottom: 40px;
+        }
+
+        .main-image:hover {
+            border-color: rgba(255,255,255,1);
+            transform: scale(1.02);
+        }
+
+        .thumbnail-gallery {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.4s ease;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .thumbnail.active,
+        .thumbnail:hover {
+            opacity: 1;
+            border-color: rgba(255,255,255,1);
+            transform: scale(1.1);
+        }
+
+        .details-section {
+            padding: 60px 80px 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(20px);
+        }
+
+        .breadcrumb {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .breadcrumb a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: rgba(255,255,255,1);
+        }
+
+        .product-title {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #ffffff;
+            margin-bottom: 40px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .product-price {
+            font-size: 2.8rem;
+            color: #ffffff;
+            font-weight: 400;
+            margin-bottom: 60px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .product-description {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.8;
+            margin-bottom: 60px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .product-specs {
+            margin-bottom: 70px;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-family: 'Cabin', sans-serif;
+        }
+
+        .spec-row:first-child {
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .spec-label {
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .spec-value {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .purchase-section {
+            margin-top: 40px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .quantity-label {
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .quantity-btn {
+            background: none;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: #ffffff;
+            transition: background 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .quantity-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .quantity-input {
+            border: none;
+            width: 70px;
+            text-align: center;
+            padding: 15px;
+            font-family: 'Cabin', sans-serif;
+            font-size: 1.1rem;
+            background: none;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 25px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.5);
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .add-to-cart:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.8);
+            transform: translateY(-3px);
+        }
+
+        .wishlist-btn {
+            width: 100%;
+            padding: 20px;
+            background: none;
+            color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.3);
+            font-family: 'Cabin', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .wishlist-btn:hover {
+            border-color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,1);
+        }
+
+        /* Dynamic background colors */
+        .bg-red { background: linear-gradient(135deg, #d73027, #f46d43); }
+        .bg-blue { background: linear-gradient(135deg, #4575b4, #74add1); }
+        .bg-purple { background: linear-gradient(135deg, #762a83, #af8dc3); }
+        .bg-green { background: linear-gradient(135deg, #1b7837, #7fbf7b); }
+        .bg-orange { background: linear-gradient(135deg, #e08214, #fdb863); }
+        .bg-teal { background: linear-gradient(135deg, #5e4fa2, #9e9ac8); }
+
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding-top: 120px;
+            }
+            
+            .image-section {
+                padding: 0 40px 40px;
+                min-height: 60vh;
+            }
+            
+            .details-section {
+                padding: 40px;
+                background: rgba(0,0,0,0.3);
+            }
+            
+            .header {
+                padding: 40px 40px;
+            }
+            
+            .product-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .image-section {
+                padding: 0 20px 30px;
+            }
+            
+            .details-section {
+                padding: 30px 20px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .product-title {
+                font-size: 2.2rem;
+                letter-spacing: 2px;
+            }
+            
+            .nav-links {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-title {
+                font-size: 1.8rem;
+            }
+            
+            .product-price {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding-top: 100px;
+            }
+        }
+    </style>
+</head>
+<body id="pageBody" class="bg-red">
+    <header class="header">
+        <a href="index.html" class="logo">Rosina Possingham</a>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="grid.html">Shop</a>
+            <a href="#about">About</a>
+            <a href="../index.html">← Demos</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="image-section">
+            <div class="main-image" id="mainImage" style="background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg');"></div>
+            
+            <div class="thumbnail-gallery">
+                <div class="thumbnail active" 
+                     style="background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg');"
+                     data-bg="bg-red"
+                     onclick="changeImage('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg', this, 'bg-red')"></div>
+                <div class="thumbnail" 
+                     style="background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg');"
+                     data-bg="bg-blue"
+                     onclick="changeImage('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg', this, 'bg-blue')"></div>
+                <div class="thumbnail" 
+                     style="background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_citriodora-in-blue-scaled.jpg');"
+                     data-bg="bg-purple"
+                     onclick="changeImage('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_citriodora-in-blue-scaled.jpg', this, 'bg-purple')"></div>
+                <div class="thumbnail" 
+                     style="background-image: url('../images/TFL/20230930_127523-scaled.jpg');"
+                     data-bg="bg-green"
+                     onclick="changeImage('../images/TFL/20230930_127523-scaled.jpg', this, 'bg-green')"></div>
+            </div>
+        </div>
+
+        <div class="details-section">
+            <div class="breadcrumb">
+                <a href="grid.html">Shop</a> / <span id="productCategory">Flash Photos Parklands</span>
+            </div>
+
+            <h1 class="product-title" id="productTitle">Nantu-Wama Not Alive</h1>
+            <div class="product-price" id="productPrice">$450</div>
+            
+            <div class="product-description" id="productDescription">
+                This contemplative cyanotype print explores the intersection of traditional analog processes with contemporary artistic expression. Part of the Parklands series, it reflects on themes of presence and absence, life and stillness through the meditative qualities of process-based art-making.
+            </div>
+
+            <div class="product-specs">
+                <div class="spec-row">
+                    <span class="spec-label">Dimensions</span>
+                    <span class="spec-value" id="productDimensions">30 × 40 cm</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Medium</span>
+                    <span class="spec-value" id="productMedium">Cyanotype print</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Edition</span>
+                    <span class="spec-value">Limited edition of 25</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Year</span>
+                    <span class="spec-value">2023</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Process</span>
+                    <span class="spec-value">Analog photography, traditional printing</span>
+                </div>
+            </div>
+
+            <div class="purchase-section">
+                <div class="quantity-controls">
+                    <span class="quantity-label">Quantity</span>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn" onclick="changeQuantity(-1)">−</button>
+                        <input type="number" class="quantity-input" value="1" min="1" id="quantity">
+                        <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                    </div>
+                </div>
+                
+                <button class="add-to-cart">Add to Collection</button>
+                <button class="wishlist-btn">Save for Later</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Product data with background colors
+        const products = {
+            '1': {
+                title: 'Nantu-Wama Not Alive',
+                price: '$450',
+                description: 'This contemplative cyanotype print explores the intersection of traditional analog processes with contemporary artistic expression. Part of the Parklands series, it reflects on themes of presence and absence, life and stillness through the meditative qualities of process-based art-making.',
+                dimensions: '30 × 40 cm',
+                medium: 'Cyanotype print',
+                category: 'Flash Photos Parklands',
+                image: '../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg',
+                bgColor: 'bg-red'
+            },
+            '2': {
+                title: 'Sideroxylon in Magenta',
+                price: '$380',
+                description: 'A limited edition botanical study with location coordinates as title, exploring the relationship between place and artistic documentation through traditional processes.',
+                dimensions: '20 × 30 cm',
+                medium: 'Limited edition print',
+                category: 'Flash Photos Parklands',
+                image: '../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_34°5415.922S-138°3616.622E-sideroxylon-in-magenta-1366x2048.jpg',
+                bgColor: 'bg-purple'
+            }
+        };
+
+        // Get product ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('product') || '1';
+
+        // Load product data
+        if (products[productId]) {
+            const product = products[productId];
+            document.getElementById('productTitle').textContent = product.title;
+            document.getElementById('productPrice').textContent = product.price;
+            document.getElementById('productDescription').textContent = product.description;
+            document.getElementById('productDimensions').textContent = product.dimensions;
+            document.getElementById('productMedium').textContent = product.medium;
+            document.getElementById('productCategory').textContent = product.category;
+            document.getElementById('mainImage').style.backgroundImage = `url('${product.image}')`;
+            
+            // Set initial background
+            const body = document.getElementById('pageBody');
+            body.className = product.bgColor;
+        }
+
+        function changeImage(imageSrc, thumbnail, bgColor) {
+            document.getElementById('mainImage').style.backgroundImage = `url('${imageSrc}')`;
+            
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            thumbnail.classList.add('active');
+            
+            // Change background color
+            const body = document.getElementById('pageBody');
+            body.className = bgColor;
+        }
+
+        function changeQuantity(change) {
+            const input = document.getElementById('quantity');
+            const currentValue = parseInt(input.value);
+            const newValue = Math.max(1, currentValue + change);
+            input.value = newValue;
+        }
+    </script>
+</body>
+</html>

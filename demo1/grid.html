@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - POSSHOP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background: #faf8f6;
+            line-height: 1.6;
+        }
+
+        .header {
+            padding: 40px 60px;
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: #2c2c2c;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 60px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .page-title h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+        }
+
+        .page-title p {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            margin-bottom: 100px;
+        }
+
+        .product-card {
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+        }
+
+        .product-card:hover .product-image {
+            opacity: 0.9;
+        }
+
+        .product-info {
+            text-align: left;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #2c2c2c;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .product-description {
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+            
+            .container {
+                padding: 60px 40px;
+            }
+            
+            .header {
+                padding: 30px 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .header {
+                padding: 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .page-title h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">POSSHOP</a>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="grid.html">Shop</a>
+            <a href="#about">About</a>
+            <a href="../index.html">← Back to Demos</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="page-title">
+            <h1>SHOP</h1>
+            <p>Discover Rosina Possingham's contemplative works exploring slow processes, cyanotypes, and the intersection of analog and digital art.</p>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card" onclick="location.href='product.html?product=1'">
+                <div class="product-image" style="background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Nantu-Wama Not Alive</div>
+                    <div class="product-price">$450</div>
+                    <div class="product-description">Cyanotype print, 30x40cm</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=2'">
+                <div class="product-image" style="background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_34°5415.922S-138°3616.622E-sideroxylon-in-magenta-1366x2048.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Sideroxylon in Magenta</div>
+                    <div class="product-price">$380</div>
+                    <div class="product-description">Limited edition print, 20x30cm</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=3'">
+                <div class="product-image" style="background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_citriodora-in-blue-scaled.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Citriodora in Blue</div>
+                    <div class="product-price">$420</div>
+                    <div class="product-description">Analog process print, 25x35cm</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=4'">
+                <div class="product-image" style="background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Workshop Series I</div>
+                    <div class="product-price">$320</div>
+                    <div class="product-description">Still life composition, 20x25cm</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=5'">
+                <div class="product-image" style="background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2395-Edit-7.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Workshop Series II</div>
+                    <div class="product-price">$340</div>
+                    <div class="product-description">Contemplative still life, 20x25cm</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=6'">
+                <div class="product-image" style="background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2417-Edit-2.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Workshop Series III</div>
+                    <div class="product-price">$350</div>
+                    <div class="product-description">Process-based work, 20x25cm</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=7'">
+                <div class="product-image" style="background-image: url('../images/TFL/20230930_127523-scaled.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">TFL Study</div>
+                    <div class="product-price">$280</div>
+                    <div class="product-description">Transport documentation, 15x20cm</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=8'">
+                <div class="product-image" style="background-image: url('../images/WHACK PHOTOGRAPHY/Artist Taskforce 22.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Artist Taskforce</div>
+                    <div class="product-price">$390</div>
+                    <div class="product-description">Documentary series, 25x30cm</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=9'">
+                <div class="product-image" style="background-image: url('../images/STILL LIFE/0002_000039340002.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Analog Memory</div>
+                    <div class="product-price">$290</div>
+                    <div class="product-description">Film photography, 18x24cm</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

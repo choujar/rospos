@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSSHOP - Rosina Possingham</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            background: #faf8f6;
+        }
+
+        .container {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            position: relative;
+        }
+
+        .quadrant {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .quadrant::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            z-index: 1;
+        }
+
+        .quadrant:hover::before {
+            background: rgba(0,0,0,0.1);
+        }
+
+        .quadrant:hover {
+            transform: scale(1.02);
+        }
+
+        .quadrant-1 {
+            background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg');
+        }
+
+        .quadrant-2 {
+            background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg');
+        }
+
+        .quadrant-3 {
+            background-image: url('../images/TFL/20230930_127523-scaled.jpg');
+        }
+
+        .quadrant-4 {
+            background-image: url('../images/WHACK PHOTOGRAPHY/Artist Taskforce 22.jpg');
+        }
+
+        .quadrant-content {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            color: white;
+            z-index: 2;
+        }
+
+        .quadrant-title {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .quadrant-subtitle {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        /* Circular POSSHOP text */
+        .circular-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .circular-text svg {
+            width: 100%;
+            height: 100%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .circular-text text {
+            fill: #2c2c2c;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 3px;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .nav-links {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            z-index: 10;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            z-index: 10;
+            color: #2c2c2c;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .quadrant-title {
+                font-size: 1.5rem;
+            }
+            
+            .quadrant-content {
+                bottom: 20px;
+                left: 20px;
+            }
+            
+            .nav-links {
+                top: 20px;
+                right: 20px;
+                gap: 20px;
+            }
+            
+            .back-link {
+                top: 20px;
+                left: 20px;
+            }
+            
+            .circular-text {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .circular-text text {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-link">← Back to Demos</a>
+    
+    <div class="nav-links">
+        <a href="grid.html">Shop</a>
+        <a href="#about">About</a>
+    </div>
+
+    <div class="container">
+        <div class="quadrant quadrant-1" onclick="location.href='grid.html'">
+            <div class="quadrant-content">
+                <div class="quadrant-title">FLASH PHOTOS</div>
+                <div class="quadrant-subtitle">Parklands Collection</div>
+            </div>
+        </div>
+        
+        <div class="quadrant quadrant-2" onclick="location.href='grid.html'">
+            <div class="quadrant-content">
+                <div class="quadrant-title">STILL LIFE</div>
+                <div class="quadrant-subtitle">Workshop Series</div>
+            </div>
+        </div>
+        
+        <div class="quadrant quadrant-3" onclick="location.href='grid.html'">
+            <div class="quadrant-content">
+                <div class="quadrant-title">TFL</div>
+                <div class="quadrant-subtitle">Transport Collection</div>
+            </div>
+        </div>
+        
+        <div class="quadrant quadrant-4" onclick="location.href='grid.html'">
+            <div class="quadrant-content">
+                <div class="quadrant-title">WHACK</div>
+                <div class="quadrant-subtitle">Photography Series</div>
+            </div>
+        </div>
+
+        <div class="circular-text">
+            <svg viewBox="0 0 200 200">
+                <defs>
+                    <path id="circle" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"/>
+                </defs>
+                <text font-size="24">
+                    <textPath href="#circle">
+                        POSSHOP • POSSHOP • POSSHOP • 
+                    </textPath>
+                </text>
+            </svg>
+        </div>
+    </div>
+</body>
+</html>

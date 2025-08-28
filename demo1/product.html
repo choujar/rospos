@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product - POSSHOP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background: #faf8f6;
+            line-height: 1.6;
+        }
+
+        .header {
+            padding: 40px 60px;
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: #2c2c2c;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 60px;
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            margin-bottom: 100px;
+        }
+
+        .product-image-section {
+            position: relative;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 70vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-bottom: 20px;
+        }
+
+        .thumbnail-images {
+            display: flex;
+            gap: 15px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .thumbnail.active,
+        .thumbnail:hover {
+            opacity: 1;
+        }
+
+        .product-details {
+            padding-top: 40px;
+        }
+
+        .product-title {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            color: #2c2c2c;
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+
+        .product-description {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .product-specs {
+            margin-bottom: 50px;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #e5e5e5;
+            font-family: 'Cabin', sans-serif;
+        }
+
+        .spec-label {
+            font-weight: 500;
+            color: #2c2c2c;
+        }
+
+        .spec-value {
+            color: #666;
+        }
+
+        .purchase-section {
+            margin-top: 60px;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .quantity-label {
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            color: #2c2c2c;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e5e5e5;
+        }
+
+        .quantity-btn {
+            background: none;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #2c2c2c;
+            transition: background 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .quantity-input {
+            border: none;
+            width: 60px;
+            text-align: center;
+            padding: 10px;
+            font-family: 'Cabin', sans-serif;
+            font-size: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 20px;
+            background: #2c2c2c;
+            color: white;
+            border: none;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .add-to-cart:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+        }
+
+        .wishlist-btn {
+            width: 100%;
+            padding: 15px;
+            background: none;
+            color: #2c2c2c;
+            border: 1px solid #e5e5e5;
+            font-family: 'Cabin', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .wishlist-btn:hover {
+            border-color: #2c2c2c;
+        }
+
+        @media (max-width: 1024px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .main-image {
+                height: 60vh;
+            }
+            
+            .container {
+                padding: 60px 40px;
+            }
+            
+            .header {
+                padding: 30px 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .header {
+                padding: 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .product-title {
+                font-size: 2rem;
+            }
+            
+            .main-image {
+                height: 50vh;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">POSSHOP</a>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="grid.html">Shop</a>
+            <a href="#about">About</a>
+            <a href="../index.html">← Back to Demos</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="product-layout">
+            <div class="product-image-section">
+                <div class="main-image" id="mainImage" style="background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg');"></div>
+                <div class="thumbnail-images">
+                    <div class="thumbnail active" 
+                         style="background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg');"
+                         onclick="changeImage('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg', this)"></div>
+                    <div class="thumbnail" 
+                         style="background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg');"
+                         onclick="changeImage('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg', this)"></div>
+                    <div class="thumbnail" 
+                         style="background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_citriodora-in-blue-scaled.jpg');"
+                         onclick="changeImage('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_citriodora-in-blue-scaled.jpg', this)"></div>
+                </div>
+            </div>
+
+            <div class="product-details">
+                <h1 class="product-title" id="productTitle">Nantu-Wama Not Alive</h1>
+                <div class="product-price" id="productPrice">$450</div>
+                <div class="product-description" id="productDescription">
+                    This contemplative cyanotype print explores the intersection of traditional analog processes with contemporary artistic expression. Part of the Parklands series, it reflects on themes of presence and absence, life and stillness. The work embodies Rosina Possingham's research into slowing down and the meditative qualities of process-based art-making.
+                </div>
+
+                <div class="product-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Dimensions</span>
+                        <span class="spec-value" id="productDimensions">30 x 40 cm</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Medium</span>
+                        <span class="spec-value" id="productMedium">Cyanotype print</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Edition</span>
+                        <span class="spec-value">Limited edition of 25</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Year</span>
+                        <span class="spec-value">2023</span>
+                    </div>
+                </div>
+
+                <div class="purchase-section">
+                    <div class="quantity-selector">
+                        <span class="quantity-label">Quantity:</span>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                            <input type="number" class="quantity-input" value="1" min="1" id="quantity">
+                            <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                        </div>
+                    </div>
+                    
+                    <button class="add-to-cart">ADD TO CART</button>
+                    <button class="wishlist-btn">ADD TO WISHLIST</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Product data
+        const products = {
+            '1': {
+                title: 'Nantu-Wama Not Alive',
+                price: '$450',
+                description: 'This contemplative cyanotype print explores the intersection of traditional analog processes with contemporary artistic expression. Part of the Parklands series, it reflects on themes of presence and absence, life and stillness.',
+                dimensions: '30 x 40 cm',
+                medium: 'Cyanotype print',
+                image: '../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg'
+            },
+            '2': {
+                title: 'Sideroxylon in Magenta',
+                price: '$380',
+                description: 'A limited edition print exploring the botanical world through an artistic lens. The magenta tones create a dreamlike quality that invites contemplation.',
+                dimensions: '20 x 30 cm',
+                medium: 'Limited edition print',
+                image: '../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_34°5415.922S-138°3616.622E-sideroxylon-in-magenta-1366x2048.jpg'
+            },
+            // Add more products as needed
+        };
+
+        // Get product ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('product') || '1';
+
+        // Load product data
+        if (products[productId]) {
+            const product = products[productId];
+            document.getElementById('productTitle').textContent = product.title;
+            document.getElementById('productPrice').textContent = product.price;
+            document.getElementById('productDescription').textContent = product.description;
+            document.getElementById('productDimensions').textContent = product.dimensions;
+            document.getElementById('productMedium').textContent = product.medium;
+            document.getElementById('mainImage').style.backgroundImage = `url('${product.image}')`;
+        }
+
+        function changeImage(imageSrc, thumbnail) {
+            document.getElementById('mainImage').style.backgroundImage = `url('${imageSrc}')`;
+            
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            thumbnail.classList.add('active');
+        }
+
+        function changeQuantity(change) {
+            const input = document.getElementById('quantity');
+            const currentValue = parseInt(input.value);
+            const newValue = Math.max(1, currentValue + change);
+            input.value = newValue;
+        }
+    </script>
+</body>
+</html>

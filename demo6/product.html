@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Product - Rosina Possingham</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background: linear-gradient(135deg, #fefefe 0%, #f8f8f8 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .angular-container {
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Diagonal navigation */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(254,254,254,0.95) 0%, rgba(248,248,248,0.95) 100%);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 0% 100%);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            height: 100%;
+        }
+
+        .back-link {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            transform: skew(-10deg);
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+            transform: skew(-10deg) translateX(-5px);
+        }
+
+        .nav-title {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #2c2c2c;
+            transform: skew(-5deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            transform: skew(-10deg);
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+            transform: skew(-10deg) translateY(-2px);
+        }
+
+        .main-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            padding: 60px 40px;
+        }
+
+        .product-layout {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .image-section {
+            position: relative;
+        }
+
+        .angular-image-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            clip-path: polygon(0% 0%, 85% 0%, 100% 15%, 100% 100%, 15% 100%, 0% 85%);
+            background: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: all 0.6s ease;
+            cursor: pointer;
+        }
+
+        .angular-image-container:hover {
+            transform: scale(1.05);
+            clip-path: polygon(5% 5%, 95% 5%, 95% 95%, 95% 95%, 5% 95%, 5% 5%);
+        }
+
+        .angular-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+            transition: all 0.6s ease;
+        }
+
+        .angular-image-container:hover::before {
+            background: rgba(0,0,0,0);
+        }
+
+        .details-section {
+            position: relative;
+        }
+
+        .angular-details {
+            padding: 40px 0;
+        }
+
+        .product-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            color: #2c2c2c;
+            transform: skew(-2deg);
+            line-height: 1.1;
+        }
+
+        .product-subtitle {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 40px;
+            transform: skew(-1deg);
+        }
+
+        .product-price {
+            font-size: 3rem;
+            font-weight: 600;
+            color: #2c2c2c;
+            letter-spacing: 3px;
+            margin-bottom: 50px;
+            transform: skew(-3deg);
+        }
+
+        .product-description {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 50px;
+            max-width: 500px;
+        }
+
+        .angular-specs {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .angular-specs::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 50%;
+            height: 2px;
+            background: linear-gradient(45deg, #e8e8e8, transparent);
+            transform: rotate(-10deg);
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .spec-item {
+            padding: 20px 0;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(45deg, #e8e8e8, transparent) 1;
+            transform: skew(-5deg);
+            transition: all 0.3s ease;
+        }
+
+        .spec-item:hover {
+            transform: skew(-5deg) translateX(10px);
+        }
+
+        .spec-label {
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .spec-value {
+            font-weight: 500;
+            color: #2c2c2c;
+            font-size: 1.1rem;
+        }
+
+        .angular-purchase {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .angular-size-option {
+            padding: 15px 25px;
+            border: 2px solid #e8e8e8;
+            background: white;
+            color: #2c2c2c;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+            transform: skew(-10deg);
+        }
+
+        .angular-size-option:hover,
+        .angular-size-option.selected {
+            border-color: #2c2c2c;
+            background: #2c2c2c;
+            color: white;
+            transform: skew(-10deg) scale(1.05);
+        }
+
+        .angular-add-cart {
+            background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+            transform: skew(-5deg);
+            width: fit-content;
+        }
+
+        .angular-add-cart:hover {
+            transform: skew(-5deg) translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .shipping-info {
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 30px;
+            transform: skew(-2deg);
+            padding-left: 20px;
+        }
+
+        /* Diagonal decorative elements */
+        .diagonal-accent {
+            position: absolute;
+            width: 3px;
+            height: 150px;
+            background: linear-gradient(45deg, #e8e8e8, transparent);
+            transform: rotate(45deg);
+            opacity: 0.3;
+        }
+
+        .accent-1 {
+            top: 20%;
+            right: 10%;
+        }
+
+        .accent-2 {
+            bottom: 30%;
+            left: 5%;
+            transform: rotate(-45deg);
+        }
+
+        @media (max-width: 968px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .angular-image-container {
+                height: 400px;
+                margin: 0 auto;
+                max-width: 500px;
+            }
+            
+            .product-title {
+                font-size: 2.5rem;
+                letter-spacing: 3px;
+            }
+            
+            .nav-content {
+                padding: 20px 20px;
+            }
+            
+            .main-content {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-content {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                order: -1;
+                gap: 20px;
+            }
+            
+            .nav-bar {
+                height: auto;
+                min-height: 80px;
+                clip-path: polygon(0% 0%, 100% 0%, 95% 100%, 0% 100%);
+            }
+            
+            .angular-image-container {
+                height: 300px;
+            }
+            
+            .product-title {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+            
+            .product-price {
+                font-size: 2.2rem;
+            }
+            
+            .spec-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .size-options {
+                justify-content: center;
+            }
+            
+            .angular-add-cart {
+                align-self: center;
+                padding: 18px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="angular-container">
+        <div class="diagonal-accent accent-1"></div>
+        <div class="diagonal-accent accent-2"></div>
+        
+        <nav class="nav-bar">
+            <div class="nav-content">
+                <a href="grid.html" class="back-link">← Shop</a>
+                <h1 class="nav-title">ANGULAR</h1>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="grid.html">Shop</a>
+                    <a href="#about">About</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="product-layout">
+                <div class="image-section">
+                    <div class="angular-image-container"></div>
+                </div>
+                
+                <div class="details-section">
+                    <div class="angular-details">
+                        <h1 class="product-title">NANTU-WAMA</h1>
+                        <p class="product-subtitle">Not Alive in Red - Limited Edition Print</p>
+                        <p class="product-price">$280</p>
+                        
+                        <div class="product-description">
+                            An angular exploration of native flora through the intersection of traditional photographic processes and contemporary artistic vision. This piece challenges conventional botanical photography through deliberate compositional choices and chemical manipulation in the darkroom.
+                        </div>
+                        
+                        <div class="angular-specs">
+                            <div class="spec-grid">
+                                <div class="spec-item">
+                                    <div class="spec-label">Process</div>
+                                    <div class="spec-value">Analog Darkroom</div>
+                                </div>
+                                <div class="spec-item">
+                                    <div class="spec-label">Medium</div>
+                                    <div class="spec-value">Silver Gelatin</div>
+                                </div>
+                                <div class="spec-item">
+                                    <div class="spec-label">Edition</div>
+                                    <div class="spec-value">25 Prints</div>
+                                </div>
+                                <div class="spec-item">
+                                    <div class="spec-label">Year</div>
+                                    <div class="spec-value">2023</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="angular-purchase">
+                            <div class="size-options">
+                                <div class="angular-size-option selected">8×10"</div>
+                                <div class="angular-size-option">11×14"</div>
+                                <div class="angular-size-option">16×20"</div>
+                            </div>
+                            
+                            <button class="angular-add-cart">ADD TO CART</button>
+                            
+                            <div class="shipping-info">
+                                Printed on demand in Adelaide<br>
+                                Ships worldwide within 5-7 days<br>
+                                Each print hand-signed and numbered
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Size selection functionality
+        document.querySelectorAll('.angular-size-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.angular-size-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+    </script>
+</body>
+</html>

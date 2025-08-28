@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Sided Shop - Rosina Possingham</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background: #fefefe;
+            line-height: 1.6;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(254, 254, 254, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e8e8e8;
+            padding: 20px 40px;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .shop-title {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #2c2c2c;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .main-content {
+            margin-top: 80px;
+            min-height: 100vh;
+        }
+
+        .two-sided-container {
+            display: flex;
+            min-height: calc(100vh - 80px);
+        }
+
+        .side {
+            flex: 1;
+            padding: 60px 40px;
+            position: relative;
+        }
+
+        .side-left {
+            background: linear-gradient(135deg, #fefefe 0%, #f8f8f8 100%);
+            border-right: 1px solid #e8e8e8;
+        }
+
+        .side-right {
+            background: linear-gradient(135deg, #f8f8f8 0%, #fefefe 100%);
+        }
+
+        .side-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            color: #2c2c2c;
+            text-align: center;
+        }
+
+        .products-column {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0);
+            transition: all 0.4s ease;
+        }
+
+        .product-card:hover .product-image::after {
+            background: rgba(0,0,0,0.1);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: #2c2c2c;
+        }
+
+        .product-subtitle {
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c2c2c;
+            letter-spacing: 0.5px;
+        }
+
+        /* Alternating product images */
+        .left-1 { background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg'); }
+        .left-2 { background-image: url('../images/TFL/20230930_127523-scaled.jpg'); }
+        .left-3 { background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2395-Edit-7.jpg'); }
+        .left-4 { background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_citriodora-in-blue-scaled.jpg'); }
+        .left-5 { background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2471-Edit-3.jpg'); }
+
+        .right-1 { background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg'); }
+        .right-2 { background-image: url('../images/WHACK PHOTOGRAPHY/Artist Taskforce 22.jpg'); }
+        .right-3 { background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_34°5415.922S-138°3616.622E-sideroxylon-in-magenta-1366x2048.jpg'); }
+        .right-4 { background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2417-Edit-2.jpg'); }
+
+        @media (max-width: 968px) {
+            .two-sided-container {
+                flex-direction: column;
+            }
+            
+            .side {
+                flex: none;
+                padding: 40px 20px;
+            }
+            
+            .side-left {
+                border-right: none;
+                border-bottom: 1px solid #e8e8e8;
+            }
+            
+            .side-title {
+                font-size: 2rem;
+            }
+            
+            .header {
+                padding: 15px 20px;
+            }
+            
+            .shop-title {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                order: -1;
+            }
+            
+            .side-title {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+            
+            .products-column {
+                gap: 30px;
+            }
+            
+            .product-image {
+                height: 200px;
+            }
+        }
+
+        /* Visual separator */
+        .visual-separator {
+            position: absolute;
+            top: 0;
+            right: -1px;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #e8e8e8, transparent);
+        }
+
+        .side-left .visual-separator {
+            display: block;
+        }
+
+        .side-right .visual-separator {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="back-link">← Home</a>
+            <h1 class="shop-title">HEMISPHERES</h1>
+            <nav class="nav-links">
+                <a href="#analog">Analog</a>
+                <a href="#digital">Digital</a>
+                <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="two-sided-container">
+            <div class="side side-left">
+                <div class="visual-separator"></div>
+                <h2 class="side-title" id="analog">ANALOG</h2>
+                <div class="products-column">
+                    <div class="product-card" onclick="location.href='product.html'">
+                        <div class="product-image left-1"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">NANTU-WAMA</h3>
+                            <p class="product-subtitle">Not Alive in Red - Darkroom Print</p>
+                            <p class="product-price">$280</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="location.href='product.html'">
+                        <div class="product-image left-2"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">TRANSPORT</h3>
+                            <p class="product-subtitle">For London - Film Photography</p>
+                            <p class="product-price">$320</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="location.href='product.html'">
+                        <div class="product-image left-3"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">EDIT SERIES</h3>
+                            <p class="product-subtitle">Workshop Study - Analog Process</p>
+                            <p class="product-price">$240</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="location.href='product.html'">
+                        <div class="product-image left-4"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">CITRIODORA</h3>
+                            <p class="product-subtitle">In Blue - Chemical Process</p>
+                            <p class="product-price">$280</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="location.href='product.html'">
+                        <div class="product-image left-5"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">PROCESS</h3>
+                            <p class="product-subtitle">Workshop Study - Traditional Print</p>
+                            <p class="product-price">$210</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side side-right">
+                <h2 class="side-title" id="digital">DIGITAL</h2>
+                <div class="products-column">
+                    <div class="product-card" onclick="location.href='product.html'">
+                        <div class="product-image right-1"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">WORKSHOP SERIES</h3>
+                            <p class="product-subtitle">Still Life Study - Digital Archive</p>
+                            <p class="product-price">$220</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="location.href='product.html'">
+                        <div class="product-image right-2"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">ARTIST TASKFORCE</h3>
+                            <p class="product-subtitle">Documentary - High-Res Print</p>
+                            <p class="product-price">$180</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="location.href='product.html'">
+                        <div class="product-image right-3"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">SIDEROXYLON</h3>
+                            <p class="product-subtitle">In Magenta - Digital Enhancement</p>
+                            <p class="product-price">$290</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="location.href='product.html'">
+                        <div class="product-image right-4"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">CONTEMPLATION</h3>
+                            <p class="product-subtitle">Workshop Study - Inkjet Print</p>
+                            <p class="product-price">$260</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

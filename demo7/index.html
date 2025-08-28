@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo 7: Vertical Strips - Rosina Possingham</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            background: #f8f6f0;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #333;
+            font-family: 'Cabin', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .vertical-strips-container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .strip {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .strip:last-child {
+            border-right: none;
+        }
+
+        .strip::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 2;
+            transition: opacity 0.6s ease;
+        }
+
+        .strip:hover::before {
+            opacity: 0.5;
+        }
+
+        .strip-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s ease;
+            filter: grayscale(0.3);
+        }
+
+        .strip:hover .strip-background {
+            transform: scale(1.05);
+            filter: grayscale(0);
+        }
+
+        .strip-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 20px;
+            color: white;
+            z-index: 3;
+            text-align: center;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .strip:hover .strip-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .strip-title {
+            font-size: 2.5rem;
+            font-weight: 200;
+            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(180deg);
+            opacity: 0.9;
+            transition: all 0.6s ease;
+        }
+
+        .strip:hover .strip-title {
+            opacity: 1;
+            transform: translate(-50%, -50%) rotate(180deg) scale(1.1);
+        }
+
+        .strip-subtitle {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+        }
+
+        .strip-link {
+            display: inline-block;
+            padding: 12px 24px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            color: white;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .strip-link:hover {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            transform: translateY(-2px);
+        }
+
+        /* Individual strip styling */
+        .strip-1 { background: linear-gradient(180deg, #8B4513 0%, #A0522D 100%); }
+        .strip-1 .strip-background { background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg'); }
+
+        .strip-2 { background: linear-gradient(180deg, #556B2F 0%, #6B8E23 100%); }
+        .strip-2 .strip-background { background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg'); }
+
+        .strip-3 { background: linear-gradient(180deg, #4682B4 0%, #5F9EA0 100%); }
+        .strip-3 .strip-background { background-image: url('../images/TFL/20230930_127523-scaled.jpg'); }
+
+        .strip-4 { background: linear-gradient(180deg, #8B008B 0%, #9932CC 100%); }
+        .strip-4 .strip-background { background-image: url('../images/WHACK PHOTOGRAPHY/Artist Taskforce 22.jpg'); }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .vertical-strips-container {
+                flex-direction: column;
+            }
+            
+            .strip {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .strip:last-child {
+                border-bottom: none;
+            }
+
+            .strip-title {
+                writing-mode: horizontal-tb;
+                text-orientation: mixed;
+                transform: translate(-50%, -50%);
+                font-size: 1.8rem;
+            }
+
+            .strip:hover .strip-title {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-button">← Demo Selection</a>
+
+    <div class="vertical-strips-container">
+        <div class="strip strip-1">
+            <div class="strip-background"></div>
+            <div class="strip-title">Flash</div>
+            <div class="strip-content">
+                <div class="strip-subtitle">Parklands Collection</div>
+                <a href="grid.html?category=flash" class="strip-link">Explore</a>
+            </div>
+        </div>
+
+        <div class="strip strip-2">
+            <div class="strip-background"></div>
+            <div class="strip-title">Still</div>
+            <div class="strip-content">
+                <div class="strip-subtitle">Life Studies</div>
+                <a href="grid.html?category=still" class="strip-link">Explore</a>
+            </div>
+        </div>
+
+        <div class="strip strip-3">
+            <div class="strip-background"></div>
+            <div class="strip-title">TFL</div>
+            <div class="strip-content">
+                <div class="strip-subtitle">Transport Series</div>
+                <a href="grid.html?category=tfl" class="strip-link">Explore</a>
+            </div>
+        </div>
+
+        <div class="strip strip-4">
+            <div class="strip-background"></div>
+            <div class="strip-title">Whack</div>
+            <div class="strip-content">
+                <div class="strip-subtitle">Photography</div>
+                <a href="grid.html?category=whack" class="strip-link">Explore</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add subtle animation on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const strips = document.querySelectorAll('.strip');
+            strips.forEach((strip, index) => {
+                strip.style.transform = 'translateY(100%)';
+                strip.style.opacity = '0';
+                setTimeout(() => {
+                    strip.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease';
+                    strip.style.transform = 'translateY(0)';
+                    strip.style.opacity = '1';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

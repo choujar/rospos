@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosina Possingham - Art Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr;
+        }
+
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 50px 60px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: opacity 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .color-blocks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            min-height: 100vh;
+        }
+
+        .color-block {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 60px;
+            overflow: hidden;
+        }
+
+        .color-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0);
+            transition: all 0.8s ease;
+            z-index: 1;
+        }
+
+        .color-block:hover::before {
+            background: rgba(0,0,0,0.2);
+        }
+
+        .color-block:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .block-1 {
+            background: linear-gradient(135deg, #d73027, #f46d43);
+        }
+
+        .block-2 {
+            background: linear-gradient(135deg, #4575b4, #74add1);
+        }
+
+        .block-3 {
+            background: linear-gradient(135deg, #762a83, #af8dc3);
+        }
+
+        .block-4 {
+            background: linear-gradient(135deg, #1b7837, #7fbf7b);
+        }
+
+        .block-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .block-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .block-subtitle {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1.4rem;
+            opacity: 0.9;
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 300px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .block-description {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .back-link {
+            position: fixed;
+            bottom: 50px;
+            left: 60px;
+            z-index: 100;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: opacity 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+            color: white;
+        }
+
+        .artist-name {
+            position: fixed;
+            bottom: 50px;
+            right: 60px;
+            z-index: 100;
+            color: rgba(255,255,255,0.7);
+            font-family: 'Cabin', sans-serif;
+            font-weight: 300;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 1024px) {
+            .color-blocks {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, 1fr);
+            }
+            
+            .color-block {
+                padding: 60px 40px;
+                min-height: 25vh;
+            }
+            
+            .block-title {
+                font-size: 2.8rem;
+                letter-spacing: 4px;
+            }
+            
+            .header {
+                padding: 40px 40px;
+            }
+            
+            .back-link,
+            .artist-name {
+                bottom: 40px;
+            }
+            
+            .back-link {
+                left: 40px;
+            }
+            
+            .artist-name {
+                right: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .color-block {
+                padding: 40px 20px;
+                min-height: 20vh;
+            }
+            
+            .block-title {
+                font-size: 2.2rem;
+                letter-spacing: 3px;
+            }
+            
+            .block-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .header {
+                padding: 30px 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 30px;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .back-link,
+            .artist-name {
+                bottom: 30px;
+                font-size: 0.9rem;
+            }
+            
+            .back-link {
+                left: 20px;
+            }
+            
+            .artist-name {
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .block-title {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+            
+            .block-subtitle {
+                font-size: 1rem;
+            }
+            
+            .color-block {
+                min-height: 18vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="index.html" class="logo">Rosina Possingham</a>
+            <nav class="nav-links">
+                <a href="grid.html">Shop</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <div class="color-blocks">
+            <div class="color-block block-1" onclick="location.href='grid.html'">
+                <div class="block-content">
+                    <div class="block-title">Flash</div>
+                    <div class="block-subtitle">Parklands Photography</div>
+                    <div class="block-description">Exploring presence through analog processes</div>
+                </div>
+            </div>
+
+            <div class="color-block block-2" onclick="location.href='grid.html'">
+                <div class="block-content">
+                    <div class="block-title">Still</div>
+                    <div class="block-subtitle">Life Compositions</div>
+                    <div class="block-description">Contemplative arrangements and meditative making</div>
+                </div>
+            </div>
+
+            <div class="color-block block-3" onclick="location.href='grid.html'">
+                <div class="block-content">
+                    <div class="block-title">Process</div>
+                    <div class="block-subtitle">Research & Investigation</div>
+                    <div class="block-description">Art as inquiry into slowing down and presence</div>
+                </div>
+            </div>
+
+            <div class="color-block block-4" onclick="location.href='grid.html'">
+                <div class="block-content">
+                    <div class="block-title">Archive</div>
+                    <div class="block-subtitle">Documentation & Memory</div>
+                    <div class="block-description">Capturing moments of contemplation and time</div>
+                </div>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">← Back to Demos</a>
+        <div class="artist-name">Research Artist</div>
+    </div>
+</body>
+</html>

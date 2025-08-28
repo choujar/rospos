@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo 7: Vertical Grid - Rosina Possingham</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background: #f8f6f0;
+            min-height: 100vh;
+        }
+
+        .navigation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(248, 246, 240, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 20px 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .back-button {
+            background: none;
+            border: 1px solid #333;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #333;
+            font-family: 'Cabin', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #333;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #8B4513;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #8B4513;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .main-content {
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        .grid-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .category-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 200;
+            letter-spacing: 0.1em;
+            margin-bottom: 60px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .vertical-grid {
+            display: flex;
+            gap: 20px;
+            height: 80vh;
+            overflow: hidden;
+        }
+
+        .grid-column {
+            flex: 1;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding-right: 10px;
+        }
+
+        .grid-column::-webkit-scrollbar {
+            display: none;
+        }
+
+        .product-card {
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            color: #333;
+            letter-spacing: 0.05em;
+        }
+
+        .product-category {
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #8B4513;
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.9rem;
+            color: #777;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .view-product {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid #8B4513;
+            color: #8B4513;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+        }
+
+        .view-product:hover {
+            background: #8B4513;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Staggered animation for cards */
+        .product-card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .category-title {
+                font-size: 2rem;
+            }
+
+            .vertical-grid {
+                flex-direction: column;
+                height: auto;
+                gap: 0;
+            }
+
+            .grid-column {
+                overflow-y: visible;
+            }
+
+            .product-card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="back-button">← Demo Selection</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="grid.html" class="active">Gallery</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="grid-container">
+            <h1 class="category-title" id="categoryTitle">All Works</h1>
+            
+            <div class="vertical-grid" id="productGrid">
+                <div class="grid-column" id="column1"></div>
+                <div class="grid-column" id="column2"></div>
+                <div class="grid-column" id="column3"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                title: "Nantu Wama Not Alive",
+                category: "Flash Photos Parklands",
+                price: "$450",
+                description: "A contemplative study in red tones, exploring the intersection of natural forms and photographic process.",
+                image: "../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg"
+            },
+            {
+                id: 2,
+                title: "Sideroxylon in Magenta",
+                category: "Flash Photos Parklands",
+                price: "$420",
+                description: "Botanical coordinates captured through analog processes, revealing hidden geometries in nature.",
+                image: "../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_34°5415.922S-138°3616.622E-sideroxylon-in-magenta-1366x2048.jpg"
+            },
+            {
+                id: 3,
+                title: "Citriodora in Blue",
+                category: "Flash Photos Parklands",
+                price: "$380",
+                description: "Blue-toned exploration of eucalyptus forms, emphasizing the meditative quality of photographic seeing.",
+                image: "../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_citriodora-in-blue-scaled.jpg"
+            },
+            {
+                id: 4,
+                title: "Workshop Study #1",
+                category: "Still Life",
+                price: "$320",
+                description: "Collaborative workshop piece exploring texture and form through still life composition.",
+                image: "../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg"
+            },
+            {
+                id: 5,
+                title: "Workshop Study #2",
+                category: "Still Life",
+                price: "$340",
+                description: "Second piece from collaborative series, focusing on light and shadow relationships.",
+                image: "../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2395-Edit-7.jpg"
+            },
+            {
+                id: 6,
+                title: "Workshop Study #3",
+                category: "Still Life",
+                price: "$360",
+                description: "Continuation of workshop exploration, emphasizing material qualities and surface textures.",
+                image: "../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2417-Edit-2.jpg"
+            },
+            {
+                id: 7,
+                title: "Analog Process #1",
+                category: "Still Life",
+                price: "$280",
+                description: "Film-based study capturing the essence of analog photographic processes.",
+                image: "../images/STILL LIFE/0002_000039340002.jpg"
+            },
+            {
+                id: 8,
+                title: "Transport Study",
+                category: "TFL",
+                price: "$240",
+                description: "Urban transportation as subject matter, exploring movement and stillness in city spaces.",
+                image: "../images/TFL/20230930_127523-scaled.jpg"
+            },
+            {
+                id: 9,
+                title: "Artist Taskforce",
+                category: "Whack Photography",
+                price: "$300",
+                description: "Collaborative project documentation, capturing the energy of creative processes.",
+                image: "../images/WHACK PHOTOGRAPHY/Artist Taskforce 22.jpg"
+            }
+        ];
+
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function filterProducts() {
+            const category = getUrlParameter('category');
+            if (!category) return products;
+
+            const categoryMap = {
+                'flash': 'Flash Photos Parklands',
+                'still': 'Still Life',
+                'tfl': 'TFL',
+                'whack': 'Whack Photography'
+            };
+
+            const fullCategoryName = categoryMap[category];
+            return products.filter(product => product.category === fullCategoryName);
+        }
+
+        function updateCategoryTitle() {
+            const category = getUrlParameter('category');
+            const titleElement = document.getElementById('categoryTitle');
+            
+            if (category) {
+                const categoryTitles = {
+                    'flash': 'Flash Photos Parklands',
+                    'still': 'Still Life',
+                    'tfl': 'TFL Collection',
+                    'whack': 'Whack Photography'
+                };
+                titleElement.textContent = categoryTitles[category] || 'All Works';
+            }
+        }
+
+        function createProductCard(product) {
+            return `
+                <div class="product-card" style="animation-delay: ${Math.random() * 0.5}s">
+                    <img src="${product.image}" alt="${product.title}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-category">${product.category}</p>
+                        <p class="product-price">${product.price}</p>
+                        <p class="product-description">${product.description}</p>
+                        <a href="product.html?id=${product.id}" class="view-product">View Details</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function distributeProducts() {
+            const filteredProducts = filterProducts();
+            const columns = [
+                document.getElementById('column1'),
+                document.getElementById('column2'),
+                document.getElementById('column3')
+            ];
+
+            // Clear columns
+            columns.forEach(column => column.innerHTML = '');
+
+            // Distribute products across columns
+            filteredProducts.forEach((product, index) => {
+                const columnIndex = index % 3;
+                columns[columnIndex].innerHTML += createProductCard(product);
+            });
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCategoryTitle();
+            distributeProducts();
+        });
+    </script>
+</body>
+</html>

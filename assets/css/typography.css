@@ -1,0 +1,295 @@
+/**
+ * Typography CSS for Rosina Possingham Website
+ * 
+ * Since "Ripe Grotesque" is not readily available as a free web font,
+ * this file implements the best free geometric grotesque alternatives
+ * that provide similar characteristics.
+ * 
+ * Primary fonts used:
+ * - Cabin (closest match to geometric grotesque style)
+ * - Josefin Sans (for bold/display text)
+ * - Montserrat (backup geometric sans)
+ * - Lato (clean and legible alternative)
+ */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+/* CSS Custom Properties for Font Stacks */
+:root {
+  /* Primary geometric grotesque font stack */
+  --font-primary: 'Cabin', 'Helvetica Neue', Arial, sans-serif;
+  
+  /* Display/Headline font stack */
+  --font-display: 'Josefin Sans', 'Cabin', 'Helvetica Neue', Arial, sans-serif;
+  
+  /* Alternative geometric font stack */
+  --font-geometric: 'Montserrat', 'Cabin', 'Helvetica Neue', Arial, sans-serif;
+  
+  /* Body text font stack */
+  --font-body: 'Lato', 'Cabin', Georgia, serif;
+  
+  /* Fallback system font stack */
+  --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  
+  /* Font weights */
+  --weight-thin: 100;
+  --weight-light: 300;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+  --weight-black: 900;
+}
+
+/* Base Typography */
+body {
+  font-family: var(--font-primary);
+  font-weight: var(--weight-normal);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: var(--weight-semibold);
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: var(--weight-medium);
+}
+
+h5 {
+  font-size: 1.25rem;
+  font-weight: var(--weight-medium);
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Paragraph and Body Text */
+p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  margin-bottom: 1em;
+}
+
+/* Large/Lead Text */
+.text-large,
+.lead {
+  font-family: var(--font-primary);
+  font-size: 1.25rem;
+  font-weight: var(--weight-light);
+  line-height: 1.5;
+}
+
+/* Small Text */
+.text-small {
+  font-size: 0.875rem;
+  font-weight: var(--weight-normal);
+}
+
+/* Utility Classes */
+
+/* Font Family Classes */
+.font-primary {
+  font-family: var(--font-primary);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-geometric {
+  font-family: var(--font-geometric);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Font Weight Classes */
+.font-thin {
+  font-weight: var(--weight-thin);
+}
+
+.font-light {
+  font-weight: var(--weight-light);
+}
+
+.font-normal {
+  font-weight: var(--weight-normal);
+}
+
+.font-medium {
+  font-weight: var(--weight-medium);
+}
+
+.font-semibold {
+  font-weight: var(--weight-semibold);
+}
+
+.font-bold {
+  font-weight: var(--weight-bold);
+}
+
+.font-extrabold {
+  font-weight: var(--weight-extrabold);
+}
+
+.font-black {
+  font-weight: var(--weight-black);
+}
+
+/* Artist-Specific Typography Styles */
+
+/* Contemplative/Slow Reading Style */
+.contemplative-text {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  font-weight: var(--weight-light);
+  letter-spacing: 0.01em;
+  word-spacing: 0.1em;
+}
+
+/* Artistic Display Text */
+.artistic-display {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: var(--weight-thin);
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+
+/* Process-based Text (for describing analog processes) */
+.process-text {
+  font-family: var(--font-geometric);
+  font-size: 0.95rem;
+  font-weight: var(--weight-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+}
+
+/* Navigation Text */
+.nav-text {
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.05em;
+}
+
+/* Quote/Caption Text */
+.quote-text {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.1rem;
+  font-weight: var(--weight-light);
+  line-height: 1.6;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.75rem;
+  }
+  
+  .artistic-display {
+    font-size: 3rem;
+  }
+  
+  .contemplative-text {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  .artistic-display {
+    font-size: 2.5rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    font-family: var(--font-body);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  body {
+    font-weight: var(--weight-medium);
+  }
+  
+  .font-light {
+    font-weight: var(--weight-normal);
+  }
+  
+  .font-thin {
+    font-weight: var(--weight-light);
+  }
+}

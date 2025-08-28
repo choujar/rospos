@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosina Possingham - Shop Demo Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cabin', sans-serif;
+            background: #f8f8f8;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: #999;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .demo-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-number {
+            background: #1a1a1a;
+            color: white;
+            padding: 0.5rem;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+
+        .demo-content {
+            padding: 1.5rem;
+        }
+
+        .demo-title {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .demo-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .demo-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .demo-features li {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .demo-features li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #d4a574;
+        }
+
+        .demo-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #1a1a1a;
+            color: white;
+            text-decoration: none;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .demo-link:hover {
+            background: #333;
+            transform: translateX(5px);
+        }
+
+        /* Color coding for demos */
+        .demo-card:nth-child(1) .demo-number { background: #d4a574; }
+        .demo-card:nth-child(2) .demo-number { background: #8b7355; }
+        .demo-card:nth-child(3) .demo-number { background: #c84a3a; }
+        .demo-card:nth-child(4) .demo-number { background: #4a7c59; }
+        .demo-card:nth-child(5) .demo-number { background: #6b5d54; }
+        .demo-card:nth-child(6) .demo-number { background: #9b8471; }
+        .demo-card:nth-child(7) .demo-number { background: #7a8b9a; }
+        .demo-card:nth-child(8) .demo-number { background: #8a7b9a; }
+        .demo-card:nth-child(9) .demo-number { background: #4a5a6a; }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+                letter-spacing: 0.1em;
+            }
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Posshop</h1>
+        <p class="subtitle">Shop Demo Gallery</p>
+        <p class="description">Nine unique approaches to showcasing Rosina Possingham's contemplative art and analog processes. Each demo includes homepage, product grid, and individual product pages.</p>
+    </div>
+
+    <div class="demo-grid">
+        <div class="demo-card">
+            <div class="demo-number">DEMO 01</div>
+            <div class="demo-content">
+                <h2 class="demo-title">Quadrants & Circular Text</h2>
+                <p class="demo-description">Four-quadrant layout with rotating "POSSHOP" circular typography in the center.</p>
+                <ul class="demo-features">
+                    <li>Quadrant-based navigation</li>
+                    <li>Rotating circular text</li>
+                    <li>3x3 product grid</li>
+                </ul>
+                <a href="demo1/index.html" class="demo-link">View Demo →</a>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <div class="demo-number">DEMO 02</div>
+            <div class="demo-content">
+                <h2 class="demo-title">Minimal POSHOP</h2>
+                <p class="demo-description">Clean sections with offset "POSHOP" circular text using 6 letters.</p>
+                <ul class="demo-features">
+                    <li>Minimal aesthetic</li>
+                    <li>2-column grid</li>
+                    <li>Split product view</li>
+                </ul>
+                <a href="demo2/index.html" class="demo-link">View Demo →</a>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <div class="demo-number">DEMO 03</div>
+            <div class="demo-content">
+                <h2 class="demo-title">Bold Color Blocks</h2>
+                <p class="demo-description">Large color blocks as navigation with dynamic backgrounds.</p>
+                <ul class="demo-features">
+                    <li>Color block navigation</li>
+                    <li>Vibrant backgrounds</li>
+                    <li>Dynamic color adaptation</li>
+                </ul>
+                <a href="demo3/index.html" class="demo-link">View Demo →</a>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <div class="demo-number">DEMO 04</div>
+            <div class="demo-content">
+                <h2 class="demo-title">Clean Grid Gallery</h2>
+                <p class="demo-description">3x2 grid with hover-revealed titles and refined borders.</p>
+                <ul class="demo-features">
+                    <li>6-tile homepage</li>
+                    <li>Subtle borders</li>
+                    <li>Centered product view</li>
+                </ul>
+                <a href="demo4/index.html" class="demo-link">View Demo →</a>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <div class="demo-number">DEMO 05</div>
+            <div class="demo-content">
+                <h2 class="demo-title">Hemispheres</h2>
+                <p class="demo-description">Screen split into halves representing analog and digital processes.</p>
+                <ul class="demo-features">
+                    <li>Horizontal split</li>
+                    <li>Alternating layout</li>
+                    <li>Full-screen images</li>
+                </ul>
+                <a href="demo5/index.html" class="demo-link">View Demo →</a>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <div class="demo-number">DEMO 06</div>
+            <div class="demo-content">
+                <h2 class="demo-title">Diagonal Sections</h2>
+                <p class="demo-description">Angular cuts with diamond-shaped product cards.</p>
+                <ul class="demo-features">
+                    <li>Diagonal divisions</li>
+                    <li>Diamond cards</li>
+                    <li>Angular design</li>
+                </ul>
+                <a href="demo6/index.html" class="demo-link">View Demo →</a>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <div class="demo-number">DEMO 07</div>
+            <div class="demo-content">
+                <h2 class="demo-title">Vertical Strips</h2>
+                <p class="demo-description">Piano key-inspired vertical columns with scrolling cards.</p>
+                <ul class="demo-features">
+                    <li>Vertical columns</li>
+                    <li>Scrolling layout</li>
+                    <li>Vertical split view</li>
+                </ul>
+                <a href="demo7/index.html" class="demo-link">View Demo →</a>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <div class="demo-number">DEMO 08</div>
+            <div class="demo-content">
+                <h2 class="demo-title">Circular Navigation</h2>
+                <p class="demo-description">Central menu with orbiting categories and radial layouts.</p>
+                <ul class="demo-features">
+                    <li>Circular menu</li>
+                    <li>Radial grid</li>
+                    <li>Orbital details</li>
+                </ul>
+                <a href="demo8/index.html" class="demo-link">View Demo →</a>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <div class="demo-number">DEMO 09</div>
+            <div class="demo-content">
+                <h2 class="demo-title">Typography-Focused</h2>
+                <p class="demo-description">Large type as navigation with text-heavy editorial layout.</p>
+                <ul class="demo-features">
+                    <li>Typography navigation</li>
+                    <li>Editorial grid</li>
+                    <li>Text-first layout</li>
+                </ul>
+                <a href="demo9/index.html" class="demo-link">View Demo →</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

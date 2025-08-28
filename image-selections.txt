@@ -1,0 +1,96 @@
+ROSINA POSSINGHAM - IMAGE SELECTIONS FOR WEB DISPLAY
+=========================================================
+
+Based on examination of the rosbox Dropbox folder, here are the curated image selections for web display, organized by collection:
+
+## 1. FLASH PHOTOS PARKLANDS (3 images available)
+**Best images for web display:**
+- Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg ★ HERO POTENTIAL
+  * Dramatic infrared-style red tones, striking tree silhouettes
+  * Perfect for hero/landing page - creates immediate visual impact
+  * Shows Rosina's experimental photographic approach
+  
+- Rosina_Possingham_citriodora-in-blue-scaled.jpg
+  * Beautiful blue/cyan tones, intricate branch patterns
+  * Excellent contrast with red image above
+  * Shows range of color experimentation
+
+**Quadrant demo selection:** Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg
+
+## 2. STILL LIFE (13 images available)
+**Best images for web display:**
+- EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg ★ HERO POTENTIAL
+  * Clean, contemporary botanical still life
+  * Vibrant red flower against pink background
+  * Shows refined aesthetic and color sense
+  
+- IMG_0004-scaled.jpg
+  * Charming poppy arrangement in vintage bottle
+  * Warm, approachable feel while maintaining artistic quality
+  * Excellent color harmony (oranges, yellows, reds)
+  
+- 0002_000039340002.jpg
+  * Minimalist grass arrangement in terracotta pot
+  * Shows contemplative, analog aesthetic
+  * Beautiful natural lighting and composition
+
+**Quadrant demo selection:** EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg
+
+## 3. WHACK PHOTOGRAPHY (1 image available)
+**Best images for web display:**
+- Artist Taskforce 22.jpg ★ EXPERIMENTAL
+  * Vibrant, psychedelic abstract composition
+  * Shows experimental/digital manipulation side
+  * High energy, colorful - good for dynamic sections
+  
+**Note:** Only one image available in this folder
+**Quadrant demo selection:** Artist Taskforce 22.jpg
+
+## 4. TFL (1 image available)
+**Best images for web display:**
+- 20230930_127523-scaled.jpg ★ CYANOTYPE COLLECTION
+  * Grid of cyanotype prints on wall
+  * Perfect representation of Rosina's cyanotype process work
+  * Shows the analog, process-based nature of her practice
+  * Excellent for about/process sections
+
+**Quadrant demo selection:** 20230930_127523-scaled.jpg
+
+## 5. LORETO ROSES (EMPTY)
+**Status:** Folder appears to be empty
+**Recommendation:** Use placeholder or substitute with additional Still Life florals
+
+## HERO/LANDING PAGE RECOMMENDATIONS (in order of preference):
+1. Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg (Flash Photos)
+   - Most dramatic and immediate visual impact
+   - Represents experimental photography approach
+   
+2. EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg (Still Life)
+   - Clean, contemporary, accessible
+   - Shows refined botanical aesthetic
+   
+3. 20230930_127523-scaled.jpg (TFL)
+   - Represents core cyanotype practice
+   - Shows process and analog focus
+
+## QUADRANT DEMO FINAL SELECTIONS:
+1. Flash Photos: /Users/sahil/Sites/labs/rospos/rosbox/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg
+2. Still Life: /Users/sahil/Sites/labs/rospos/rosbox/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg  
+3. Whack Photography: /Users/sahil/Sites/labs/rospos/rosbox/WHACK PHOTOGRAPHY/Artist Taskforce 22.jpg
+4. TFL/Cyanotypes: /Users/sahil/Sites/labs/rospos/rosbox/TFL/20230930_127523-scaled.jpg
+
+## STYLE OBSERVATIONS:
+- Strong color experimentation (infrared effects, bold backgrounds)
+- Mix of natural/botanical subjects with experimental processing
+- Balance between minimalist composition and vibrant color
+- Clear focus on process-based, analog-inspired work
+- Contemplative yet visually striking aesthetic
+
+## MISSING/PLACEHOLDER NEEDED:
+- Loreto Roses folder is empty - suggest using additional Still Life florals or creating placeholder section
+
+## TECHNICAL NOTES:
+- All selected images appear web-ready with good resolution
+- Mix of horizontal and vertical orientations available
+- Strong color palettes suitable for website theming
+- Images represent good range of Rosina's artistic practice

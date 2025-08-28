@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean Grid Gallery - Rosina Possingham</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background: #fefefe;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 100;
+            color: #2c2c2c;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 100;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 0 20px;
+        }
+
+        .gallery-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 60px;
+            color: #2c2c2c;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 2px;
+            height: 70vh;
+            max-height: 600px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0);
+            transition: all 0.4s ease;
+            z-index: 1;
+        }
+
+        .gallery-item:hover::before {
+            background: rgba(0,0,0,0.2);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            z-index: 2;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 40px 20px 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            z-index: 2;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .item-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .item-subtitle {
+            color: rgba(255,255,255,0.8);
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        /* Background images for each item */
+        .item-1 {
+            background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg');
+        }
+
+        .item-2 {
+            background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg');
+        }
+
+        .item-3 {
+            background-image: url('../images/TFL/20230930_127523-scaled.jpg');
+        }
+
+        .item-4 {
+            background-image: url('../images/WHACK PHOTOGRAPHY/Artist Taskforce 22.jpg');
+        }
+
+        .item-5 {
+            background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2395-Edit-7.jpg');
+        }
+
+        .item-6 {
+            background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_34°5415.922S-138°3616.622E-sideroxylon-in-magenta-1366x2048.jpg');
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                height: 80vh;
+            }
+            
+            .gallery-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            
+            .back-link, .nav-links {
+                top: 20px;
+            }
+            
+            .nav-links {
+                right: 20px;
+                gap: 20px;
+            }
+            
+            .back-link {
+                left: 20px;
+            }
+            
+            body {
+                padding: 20px;
+            }
+            
+            .gallery-container {
+                margin-top: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(6, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-link">← Back to Demos</a>
+    
+    <div class="nav-links">
+        <a href="grid.html">Shop</a>
+        <a href="#about">About</a>
+    </div>
+
+    <div class="gallery-container">
+        <h1 class="gallery-title">POSSHOP</h1>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item item-1" onclick="location.href='grid.html'">
+                <div class="gallery-overlay">
+                    <div class="item-title">NANTU-WAMA</div>
+                    <div class="item-subtitle">Not Alive in Red</div>
+                </div>
+            </div>
+            
+            <div class="gallery-item item-2" onclick="location.href='grid.html'">
+                <div class="gallery-overlay">
+                    <div class="item-title">WORKSHOP</div>
+                    <div class="item-subtitle">Still Life Series</div>
+                </div>
+            </div>
+            
+            <div class="gallery-item item-3" onclick="location.href='grid.html'">
+                <div class="gallery-overlay">
+                    <div class="item-title">TRANSPORT</div>
+                    <div class="item-subtitle">For London Collection</div>
+                </div>
+            </div>
+            
+            <div class="gallery-item item-4" onclick="location.href='grid.html'">
+                <div class="gallery-overlay">
+                    <div class="item-title">ARTIST</div>
+                    <div class="item-subtitle">Taskforce Series</div>
+                </div>
+            </div>
+            
+            <div class="gallery-item item-5" onclick="location.href='grid.html'">
+                <div class="gallery-overlay">
+                    <div class="item-title">WORKSHOP</div>
+                    <div class="item-subtitle">Edit Series</div>
+                </div>
+            </div>
+            
+            <div class="gallery-item item-6" onclick="location.href='grid.html'">
+                <div class="gallery-overlay">
+                    <div class="item-title">SIDEROXYLON</div>
+                    <div class="item-subtitle">In Magenta</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

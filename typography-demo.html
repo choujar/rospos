@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typography Demo - Rosina Possingham Website</title>
+    <link rel="stylesheet" href="assets/css/typography.css">
+    <style>
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #fafafa;
+            color: #333;
+        }
+        
+        .demo-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .font-sample {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-left: 4px solid #e2e8f0;
+            background: #f8fafc;
+        }
+        
+        .font-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-system);
+        }
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="demo-section">
+        <h1 class="artistic-display">Typography Demo</h1>
+        <p class="lead">Geometric grotesque font alternatives for Rosina Possingham's website</p>
+    </header>
+
+    <section class="demo-section">
+        <h2>Primary Font Stack Samples</h2>
+        <p class="contemplative-text">Since "Ripe Grotesque" is not available as a free web font, this demo showcases the best geometric grotesque alternatives from Google Fonts that provide similar characteristics and aesthetic qualities.</p>
+        
+        <div class="font-sample">
+            <div class="font-label">Primary Font (Cabin)</div>
+            <div class="font-primary">
+                <h3>The Art of Slow Processes</h3>
+                <p>Cabin provides excellent legibility and geometric qualities that work well for both headings and body text. The lowercase 'g' character closely matches the distinctive style found in premium grotesque fonts.</p>
+            </div>
+        </div>
+
+        <div class="font-sample">
+            <div class="font-label">Display Font (Josefin Sans)</div>
+            <div class="font-display">
+                <h3>Contemplative Cyanotypes</h3>
+                <p>Josefin Sans excels in display applications with its geometric elegance and rounded corners. Perfect for bold headlines and artistic statements.</p>
+            </div>
+        </div>
+
+        <div class="font-sample">
+            <div class="font-label">Geometric Alternative (Montserrat)</div>
+            <div class="font-geometric">
+                <h3>Analog Photography Processes</h3>
+                <p>Montserrat offers a clean, geometric approach with multiple weights available. Great for structured layouts and modern design elements.</p>
+            </div>
+        </div>
+
+        <div class="font-sample">
+            <div class="font-label">Body Text Font (Lato)</div>
+            <div class="font-body">
+                <h3>Research and Artistic Practice</h3>
+                <p>Lato provides excellent readability for longer text passages while maintaining a contemporary feel that complements the geometric headline fonts.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo-section">
+        <h2>Heading Hierarchy</h2>
+        <h1>H1 - Main Title</h1>
+        <h2>H2 - Section Heading</h2>
+        <h3>H3 - Subsection</h3>
+        <h4>H4 - Article Heading</h4>
+        <h5>H5 - Subheading</h5>
+        <h6>H6 - Label Heading</h6>
+    </section>
+
+    <section class="demo-section">
+        <h2>Artistic Typography Styles</h2>
+        
+        <div class="font-sample">
+            <div class="font-label">Artistic Display</div>
+            <div class="artistic-display">Rosina Possingham</div>
+        </div>
+
+        <div class="font-sample">
+            <div class="font-label">Contemplative Text</div>
+            <div class="contemplative-text">
+                The process of creating cyanotypes requires patience and mindfulness. Each print emerges slowly, revealing its blue tones through careful exposure to light. This analog process cannot be rushed, demanding a different relationship with time and creation.
+            </div>
+        </div>
+
+        <div class="font-sample">
+            <div class="font-label">Process Description</div>
+            <div class="process-text">
+                Coating • Exposure • Development • Washing • Drying
+            </div>
+        </div>
+
+        <div class="font-sample">
+            <div class="font-label">Navigation Text</div>
+            <div class="nav-text">
+                Work • About • Process • Contact • Shop
+            </div>
+        </div>
+
+        <div class="font-sample">
+            <div class="font-label">Quote Text</div>
+            <div class="quote-text">
+                "Art is not what you see, but what you make others see. The slow process teaches us to observe deeply, to find beauty in the gradual revelation of form and light."
+            </div>
+        </div>
+    </section>
+
+    <section class="demo-section">
+        <h2>Font Weight Variations</h2>
+        <div class="color-grid">
+            <div>
+                <div class="font-label">Thin (100)</div>
+                <div class="font-primary font-thin">Delicate and ethereal</div>
+            </div>
+            <div>
+                <div class="font-label">Light (300)</div>
+                <div class="font-primary font-light">Gentle and refined</div>
+            </div>
+            <div>
+                <div class="font-label">Normal (400)</div>
+                <div class="font-primary font-normal">Balanced and readable</div>
+            </div>
+            <div>
+                <div class="font-label">Medium (500)</div>
+                <div class="font-primary font-medium">Substantial presence</div>
+            </div>
+            <div>
+                <div class="font-label">Semibold (600)</div>
+                <div class="font-primary font-semibold">Strong and confident</div>
+            </div>
+            <div>
+                <div class="font-label">Bold (700)</div>
+                <div class="font-primary font-bold">Commanding attention</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo-section">
+        <h2>Implementation Notes</h2>
+        <div class="contemplative-text">
+            <h3>Why These Fonts Were Chosen</h3>
+            <ul>
+                <li><strong>Cabin</strong> - Best match for geometric grotesque characteristics, particularly the distinctive lowercase 'g'</li>
+                <li><strong>Josefin Sans</strong> - Excellent for bold display text with geometric elegance and rounded corners</li>
+                <li><strong>Montserrat</strong> - Clean geometric alternative with comprehensive weight options</li>
+                <li><strong>Lato</strong> - Highly legible for body text while maintaining contemporary feel</li>
+            </ul>
+            
+            <h3>Usage Recommendations</h3>
+            <ul>
+                <li>Use <code>--font-display</code> for main headings and artistic statements</li>
+                <li>Use <code>--font-primary</code> for subheadings and secondary content</li>
+                <li>Use <code>--font-body</code> for longer text passages and descriptions</li>
+                <li>Use <code>--font-geometric</code> for structured elements and navigation</li>
+            </ul>
+        </div>
+    </section>
+</body>
+</html>

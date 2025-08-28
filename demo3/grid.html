@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Rosina Possingham</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            padding: 50px 60px;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: opacity 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .container {
+            padding: 80px 60px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .page-title {
+            font-size: 4.5rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            color: #ffffff;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .page-subtitle {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 60px;
+            margin-bottom: 120px;
+        }
+
+        .product-card {
+            cursor: pointer;
+            transition: all 0.6s ease;
+            padding: 50px;
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.1);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-20px) scale(1.02);
+        }
+
+        /* Color variations for cards */
+        .product-card:nth-child(4n+1) {
+            background: linear-gradient(135deg, #d73027, #f46d43);
+        }
+
+        .product-card:nth-child(4n+2) {
+            background: linear-gradient(135deg, #4575b4, #74add1);
+        }
+
+        .product-card:nth-child(4n+3) {
+            background: linear-gradient(135deg, #762a83, #af8dc3);
+        }
+
+        .product-card:nth-child(4n+4) {
+            background: linear-gradient(135deg, #1b7837, #7fbf7b);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-bottom: 40px;
+            transition: all 0.6s ease;
+            border: 3px solid rgba(255,255,255,0.8);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(0.95);
+            border-color: rgba(255,255,255,1);
+        }
+
+        .product-info {
+            text-align: left;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .product-price {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .product-description {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .load-more {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .load-more-btn {
+            padding: 20px 50px;
+            background: none;
+            color: #ffffff;
+            border: 2px solid rgba(255,255,255,0.3);
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+        }
+
+        .load-more-btn:hover {
+            border-color: #ffffff;
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 50px;
+            }
+            
+            .container {
+                padding: 60px 40px;
+            }
+            
+            .header {
+                padding: 40px 40px;
+            }
+            
+            .page-title {
+                font-size: 3.5rem;
+                letter-spacing: 6px;
+            }
+            
+            .product-card {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+            
+            .page-header {
+                margin-bottom: 60px;
+            }
+            
+            .nav-links {
+                gap: 30px;
+            }
+            
+            .product-card {
+                padding: 30px;
+            }
+            
+            .product-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+            
+            .product-card {
+                padding: 25px;
+            }
+            
+            .product-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">Rosina Possingham</a>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="grid.html">Shop</a>
+            <a href="#about">About</a>
+            <a href="../index.html">← Demos</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Shop</h1>
+            <p class="page-subtitle">Art as research into slowing down, presence, and the meditative qualities of traditional processes merged with contemporary expression.</p>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card" onclick="location.href='product.html?product=1'">
+                <div class="product-image" style="background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Nantu-Wama Not Alive</div>
+                    <div class="product-price">$450</div>
+                    <div class="product-description">Cyanotype print exploring presence and absence through traditional analog processes</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=2'">
+                <div class="product-image" style="background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_34°5415.922S-138°3616.622E-sideroxylon-in-magenta-1366x2048.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Sideroxylon in Magenta</div>
+                    <div class="product-price">$380</div>
+                    <div class="product-description">Botanical documentation with geographic coordinates as artistic statement</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=3'">
+                <div class="product-image" style="background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_citriodora-in-blue-scaled.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Citriodora in Blue</div>
+                    <div class="product-price">$420</div>
+                    <div class="product-description">Color study merging botanical forms with contemplative process</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=4'">
+                <div class="product-image" style="background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Workshop Series I</div>
+                    <div class="product-price">$320</div>
+                    <div class="product-description">Collaborative investigation into stillness and arrangement</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=5'">
+                <div class="product-image" style="background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2395-Edit-7.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Workshop Series II</div>
+                    <div class="product-price">$340</div>
+                    <div class="product-description">Meditative qualities of object relationships and spatial arrangement</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=6'">
+                <div class="product-image" style="background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2417-Edit-2.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Workshop Series III</div>
+                    <div class="product-price">$350</div>
+                    <div class="product-description">Time-based exploration of contemplative making processes</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=7'">
+                <div class="product-image" style="background-image: url('../images/TFL/20230930_127523-scaled.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">TFL Study</div>
+                    <div class="product-price">$280</div>
+                    <div class="product-description">Urban documentation as meditation on movement and pause</div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?product=8'">
+                <div class="product-image" style="background-image: url('../images/WHACK PHOTOGRAPHY/Artist Taskforce 22.jpg');"></div>
+                <div class="product-info">
+                    <div class="product-title">Artist Taskforce</div>
+                    <div class="product-price">$390</div>
+                    <div class="product-description">Community documentation exploring artistic collaboration</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="load-more">
+            <button class="load-more-btn">View More Works</button>
+        </div>
+    </div>
+</body>
+</html>
