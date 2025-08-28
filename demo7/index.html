@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo 7: Vertical Strips - Rosina Possingham</title>
+    <title>Demo 8: Circular Navigation - Rosina Possingham</title>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -16,7 +16,8 @@
             font-family: 'Josefin Sans', sans-serif;
             height: 100vh;
             overflow: hidden;
-            background: #f8f6f0;
+            background: radial-gradient(circle at center, #f8f6f0 0%, #e8e4dc 70%, #d8d2c8 100%);
+            position: relative;
         }
 
         .back-button {
@@ -27,7 +28,7 @@
             background: rgba(255, 255, 255, 0.9);
             border: 1px solid #ddd;
             padding: 8px 16px;
-            border-radius: 20px;
+            border-radius: 50px;
             text-decoration: none;
             color: #333;
             font-family: 'Cabin', sans-serif;
@@ -39,226 +40,358 @@
         .back-button:hover {
             background: rgba(255, 255, 255, 1);
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
-        .vertical-strips-container {
-            display: flex;
-            height: 100vh;
-            width: 100%;
-        }
-
-        .strip {
-            flex: 1;
+        .circular-container {
             position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .strip:last-child {
-            border-right: none;
-        }
-
-        .strip::before {
-            content: '';
+        .center-circle {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 100%);
-            z-index: 2;
-            transition: opacity 0.6s ease;
-        }
-
-        .strip:hover::before {
-            opacity: 0.5;
-        }
-
-        .strip-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.6s ease;
-            filter: grayscale(0.3);
-        }
-
-        .strip:hover .strip-background {
-            transform: scale(1.05);
-            filter: grayscale(0);
-        }
-
-        .strip-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 40px 20px;
-            color: white;
-            z-index: 3;
-            text-align: center;
-            transform: translateY(20px);
-            opacity: 0;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fff 0%, #f5f3ef 100%);
+            box-shadow: 
+                0 0 0 1px rgba(0,0,0,0.05),
+                0 20px 60px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
             transition: all 0.6s ease;
         }
 
-        .strip:hover .strip-content {
-            transform: translateY(0);
-            opacity: 1;
+        .center-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 0 0 1px rgba(0,0,0,0.05),
+                0 30px 80px rgba(0,0,0,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.8);
         }
 
-        .strip-title {
+        .center-logo {
             font-size: 2.5rem;
-            font-weight: 200;
-            margin-bottom: 20px;
+            font-weight: 100;
+            color: #333;
+            margin-bottom: 10px;
+            letter-spacing: 0.2em;
+            text-align: center;
+        }
+
+        .center-tagline {
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
+        }
+
+        .orbital-items {
             position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            border: 1px dashed rgba(0,0,0,0.1);
+            animation: rotate 60s linear infinite;
+        }
+
+        .orbital-item {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fff 0%, #f8f6f0 100%);
+            box-shadow: 
+                0 8px 32px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+            color: #333;
+            animation: counter-rotate 60s linear infinite;
+            border: 2px solid transparent;
+        }
+
+        .orbital-item:hover {
+            transform: scale(1.2);
+            box-shadow: 
+                0 16px 48px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+            border-color: rgba(139, 69, 19, 0.3);
+            z-index: 20;
+        }
+
+        .orbital-item:nth-child(1) {
+            top: -60px;
             left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+        }
+
+        .orbital-item:nth-child(2) {
             top: 50%;
-            transform: translate(-50%, -50%) rotate(180deg);
-            opacity: 0.9;
-            transition: all 0.6s ease;
+            right: -60px;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, #556B2F, #6B8E23);
+            color: white;
         }
 
-        .strip:hover .strip-title {
-            opacity: 1;
-            transform: translate(-50%, -50%) rotate(180deg) scale(1.1);
+        .orbital-item:nth-child(3) {
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #4682B4, #5F9EA0);
+            color: white;
         }
 
-        .strip-subtitle {
-            font-family: 'Cabin', sans-serif;
+        .orbital-item:nth-child(4) {
+            top: 50%;
+            left: -60px;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, #8B008B, #9932CC);
+            color: white;
+        }
+
+        .item-title {
             font-size: 1rem;
-            font-weight: 400;
-            opacity: 0.9;
-            margin-bottom: 15px;
+            font-weight: 300;
+            margin-bottom: 5px;
+            text-align: center;
             letter-spacing: 0.05em;
         }
 
-        .strip-link {
-            display: inline-block;
-            padding: 12px 24px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            color: white;
-            text-decoration: none;
+        .item-count {
             font-family: 'Cabin', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.7rem;
+            opacity: 0.9;
+            text-align: center;
             letter-spacing: 0.1em;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
         }
 
-        .strip-link:hover {
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            transform: translateY(-2px);
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(139, 69, 19, 0.3);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
         }
 
-        /* Individual strip styling */
-        .strip-1 { background: linear-gradient(180deg, #8B4513 0%, #A0522D 100%); }
-        .strip-1 .strip-background { background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg'); }
+        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 60%; left: 15%; animation-delay: 2s; }
+        .particle:nth-child(3) { top: 30%; right: 20%; animation-delay: 4s; }
+        .particle:nth-child(4) { bottom: 40%; right: 10%; animation-delay: 6s; }
+        .particle:nth-child(5) { bottom: 20%; left: 25%; animation-delay: 1s; }
 
-        .strip-2 { background: linear-gradient(180deg, #556B2F 0%, #6B8E23 100%); }
-        .strip-2 .strip-background { background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg'); }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
-        .strip-3 { background: linear-gradient(180deg, #4682B4 0%, #5F9EA0 100%); }
-        .strip-3 .strip-background { background-image: url('../images/TFL/20230930_127523-scaled.jpg'); }
+        @keyframes counter-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
 
-        .strip-4 { background: linear-gradient(180deg, #8B008B 0%, #9932CC 100%); }
-        .strip-4 .strip-background { background-image: url('../images/WHACK PHOTOGRAPHY/Artist Taskforce 22.jpg'); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-20px) translateX(10px) scale(1.2); opacity: 0.8; }
+        }
 
-        /* Responsive design */
+        /* Background pattern */
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #333 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, #333 2px, transparent 2px);
+            background-size: 100px 100px;
+            background-position: 0 0, 50px 50px;
+            animation: pattern-drift 30s linear infinite;
+        }
+
+        @keyframes pattern-drift {
+            from { transform: translate(0, 0); }
+            to { transform: translate(100px, 100px); }
+        }
+
+        /* Mobile responsiveness */
         @media (max-width: 768px) {
-            .vertical-strips-container {
-                flex-direction: column;
-            }
-            
-            .strip {
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            .center-circle {
+                width: 200px;
+                height: 200px;
             }
 
-            .strip:last-child {
-                border-bottom: none;
-            }
-
-            .strip-title {
-                writing-mode: horizontal-tb;
-                text-orientation: mixed;
-                transform: translate(-50%, -50%);
+            .center-logo {
                 font-size: 1.8rem;
             }
 
-            .strip:hover .strip-title {
-                transform: translate(-50%, -50%) scale(1.1);
+            .center-tagline {
+                font-size: 0.8rem;
             }
+
+            .orbital-items {
+                width: 400px;
+                height: 400px;
+            }
+
+            .orbital-item {
+                width: 80px;
+                height: 80px;
+            }
+
+            .orbital-item:nth-child(1) {
+                top: -40px;
+            }
+
+            .orbital-item:nth-child(2) {
+                right: -40px;
+            }
+
+            .orbital-item:nth-child(3) {
+                bottom: -40px;
+            }
+
+            .orbital-item:nth-child(4) {
+                left: -40px;
+            }
+
+            .item-title {
+                font-size: 0.8rem;
+            }
+
+            .item-count {
+                font-size: 0.6rem;
+            }
+        }
+
+        /* Loading animation */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1.2s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
+    <div class="background-pattern"></div>
+    
+    <!-- Floating particles -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
     <a href="../index.html" class="back-button">← Demo Selection</a>
 
-    <div class="vertical-strips-container">
-        <div class="strip strip-1">
-            <div class="strip-background"></div>
-            <div class="strip-title">Flash</div>
-            <div class="strip-content">
-                <div class="strip-subtitle">Parklands Collection</div>
-                <a href="grid.html?category=flash" class="strip-link">Explore</a>
-            </div>
+    <div class="circular-container fade-in">
+        <div class="center-circle">
+            <div class="center-logo">RP</div>
+            <div class="center-tagline">Rosina Possingham</div>
         </div>
 
-        <div class="strip strip-2">
-            <div class="strip-background"></div>
-            <div class="strip-title">Still</div>
-            <div class="strip-content">
-                <div class="strip-subtitle">Life Studies</div>
-                <a href="grid.html?category=still" class="strip-link">Explore</a>
-            </div>
-        </div>
+        <div class="orbital-items">
+            <a href="grid.html?category=flash" class="orbital-item">
+                <div class="item-title">Flash</div>
+                <div class="item-count">3 Pieces</div>
+            </a>
 
-        <div class="strip strip-3">
-            <div class="strip-background"></div>
-            <div class="strip-title">TFL</div>
-            <div class="strip-content">
-                <div class="strip-subtitle">Transport Series</div>
-                <a href="grid.html?category=tfl" class="strip-link">Explore</a>
-            </div>
-        </div>
+            <a href="grid.html?category=still" class="orbital-item">
+                <div class="item-title">Still Life</div>
+                <div class="item-count">4 Pieces</div>
+            </a>
 
-        <div class="strip strip-4">
-            <div class="strip-background"></div>
-            <div class="strip-title">Whack</div>
-            <div class="strip-content">
-                <div class="strip-subtitle">Photography</div>
-                <a href="grid.html?category=whack" class="strip-link">Explore</a>
-            </div>
+            <a href="grid.html?category=tfl" class="orbital-item">
+                <div class="item-title">TFL</div>
+                <div class="item-count">1 Piece</div>
+            </a>
+
+            <a href="grid.html?category=whack" class="orbital-item">
+                <div class="item-title">Whack</div>
+                <div class="item-count">1 Piece</div>
+            </a>
         </div>
     </div>
 
     <script>
-        // Add subtle animation on load
+        // Add interactive hover effects
         document.addEventListener('DOMContentLoaded', () => {
-            const strips = document.querySelectorAll('.strip');
-            strips.forEach((strip, index) => {
-                strip.style.transform = 'translateY(100%)';
-                strip.style.opacity = '0';
-                setTimeout(() => {
-                    strip.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease';
-                    strip.style.transform = 'translateY(0)';
-                    strip.style.opacity = '1';
-                }, index * 100);
+            const orbitalItems = document.querySelectorAll('.orbital-item');
+            const centerCircle = document.querySelector('.center-circle');
+
+            orbitalItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    centerCircle.style.transform = 'scale(0.95)';
+                    centerCircle.style.filter = 'blur(1px)';
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    centerCircle.style.transform = 'scale(1)';
+                    centerCircle.style.filter = 'none';
+                });
+            });
+
+            // Add click ripple effect
+            orbitalItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const ripple = document.createElement('div');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255,255,255,0.6)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.left = '50%';
+                    ripple.style.top = '50%';
+                    ripple.style.width = '20px';
+                    ripple.style.height = '20px';
+                    ripple.style.marginLeft = '-10px';
+                    ripple.style.marginTop = '-10px';
+
+                    item.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
             });
         });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>

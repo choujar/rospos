@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angular Product - Rosina Possingham</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Demo 7: Product Detail - Rosina Possingham</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,59 +14,47 @@
 
         body {
             font-family: 'Josefin Sans', sans-serif;
-            background: linear-gradient(135deg, #fefefe 0%, #f8f8f8 100%);
-            line-height: 1.6;
+            background: #f8f6f0;
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        .angular-container {
-            min-height: 100vh;
-            position: relative;
-        }
-
-        /* Diagonal navigation */
-        .nav-bar {
+        .navigation {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            height: 80px;
-            background: linear-gradient(135deg, rgba(254,254,254,0.95) 0%, rgba(248,248,248,0.95) 100%);
+            background: rgba(248, 246, 240, 0.95);
             backdrop-filter: blur(20px);
-            z-index: 1000;
-            clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 0% 100%);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 20px 0;
+            z-index: 100;
         }
 
-        .nav-content {
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px 40px;
-            height: 100%;
+            padding: 0 40px;
         }
 
-        .back-link {
-            color: #2c2c2c;
+        .back-button {
+            background: none;
+            border: 1px solid #333;
+            padding: 8px 20px;
+            border-radius: 20px;
             text-decoration: none;
+            color: #333;
             font-family: 'Cabin', sans-serif;
-            font-weight: 500;
+            font-size: 14px;
             transition: all 0.3s ease;
-            transform: skew(-10deg);
         }
 
-        .back-link:hover {
-            opacity: 0.7;
-            transform: skew(-10deg) translateX(-5px);
-        }
-
-        .nav-title {
-            font-size: 2rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: #2c2c2c;
-            transform: skew(-5deg);
+        .back-button:hover {
+            background: #333;
+            color: white;
         }
 
         .nav-links {
@@ -77,404 +63,460 @@
         }
 
         .nav-links a {
-            color: #2c2c2c;
             text-decoration: none;
+            color: #333;
             font-family: 'Cabin', sans-serif;
             font-weight: 500;
             transition: all 0.3s ease;
-            transform: skew(-10deg);
+            position: relative;
         }
 
         .nav-links a:hover {
-            opacity: 0.7;
-            transform: skew(-10deg) translateY(-2px);
+            color: #8B4513;
         }
 
         .main-content {
-            margin-top: 80px;
-            min-height: calc(100vh - 80px);
-            display: flex;
-            align-items: center;
-            padding: 60px 40px;
+            padding-top: 100px;
+            min-height: 100vh;
         }
 
-        .product-layout {
+        .product-container {
+            display: flex;
+            height: calc(100vh - 100px);
             max-width: 1400px;
             margin: 0 auto;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
         }
 
         .image-section {
+            flex: 1;
             position: relative;
+            overflow: hidden;
+            background: #fff;
         }
 
-        .angular-image-container {
-            position: relative;
+        .product-image {
             width: 100%;
-            height: 500px;
-            clip-path: polygon(0% 0%, 85% 0%, 100% 15%, 100% 100%, 15% 100%, 0% 85%);
-            background: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            transition: all 0.6s ease;
-            cursor: pointer;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
         }
 
-        .angular-image-container:hover {
+        .image-section:hover .product-image {
             transform: scale(1.05);
-            clip-path: polygon(5% 5%, 95% 5%, 95% 95%, 95% 95%, 5% 95%, 5% 5%);
         }
 
-        .angular-image-container::before {
-            content: '';
+        .image-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.1);
-            transition: all 0.6s ease;
+            background: linear-gradient(45deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
         }
 
-        .angular-image-container:hover::before {
-            background: rgba(0,0,0,0);
+        .image-section:hover .image-overlay {
+            opacity: 1;
         }
 
         .details-section {
+            flex: 1;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             position: relative;
+            background: linear-gradient(135deg, #f8f6f0 0%, #f0ede5 100%);
         }
 
-        .angular-details {
-            padding: 40px 0;
+        .vertical-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #8B4513 0%, #A0522D 50%, #8B4513 100%);
+        }
+
+        .product-category {
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.9rem;
+            color: #8B4513;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
         }
 
         .product-title {
-            font-size: 3.5rem;
-            font-weight: 300;
-            letter-spacing: 5px;
-            margin-bottom: 20px;
-            color: #2c2c2c;
-            transform: skew(-2deg);
-            line-height: 1.1;
-        }
-
-        .product-subtitle {
-            font-family: 'Cabin', sans-serif;
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 40px;
-            transform: skew(-1deg);
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 30px;
+            color: #333;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
         }
 
         .product-price {
-            font-size: 3rem;
-            font-weight: 600;
-            color: #2c2c2c;
-            letter-spacing: 3px;
-            margin-bottom: 50px;
-            transform: skew(-3deg);
+            font-size: 2rem;
+            font-weight: 300;
+            color: #8B4513;
+            margin-bottom: 40px;
+            letter-spacing: 0.05em;
         }
 
         .product-description {
             font-family: 'Cabin', sans-serif;
             font-size: 1.1rem;
-            line-height: 1.8;
             color: #555;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .product-details {
             margin-bottom: 50px;
-            max-width: 500px;
         }
 
-        .angular-specs {
-            margin-bottom: 50px;
-            position: relative;
-        }
-
-        .angular-specs::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: 50%;
-            height: 2px;
-            background: linear-gradient(45deg, #e8e8e8, transparent);
-            transform: rotate(-10deg);
-        }
-
-        .spec-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-
-        .spec-item {
-            padding: 20px 0;
-            border-bottom: 2px solid transparent;
-            border-image: linear-gradient(45deg, #e8e8e8, transparent) 1;
-            transform: skew(-5deg);
-            transition: all 0.3s ease;
-        }
-
-        .spec-item:hover {
-            transform: skew(-5deg) translateX(10px);
-        }
-
-        .spec-label {
-            font-family: 'Cabin', sans-serif;
-            font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-
-        .spec-value {
-            font-weight: 500;
-            color: #2c2c2c;
-            font-size: 1.1rem;
-        }
-
-        .angular-purchase {
+        .detail-item {
             display: flex;
-            flex-direction: column;
-            gap: 30px;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            font-family: 'Cabin', sans-serif;
         }
 
-        .size-options {
+        .detail-label {
+            font-weight: 600;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.9rem;
+        }
+
+        .detail-value {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .action-buttons {
             display: flex;
             gap: 20px;
-            flex-wrap: wrap;
+            margin-bottom: 30px;
         }
 
-        .angular-size-option {
-            padding: 15px 25px;
-            border: 2px solid #e8e8e8;
-            background: white;
-            color: #2c2c2c;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            font-family: 'Cabin', sans-serif;
-            font-weight: 500;
-            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
-            transform: skew(-10deg);
-        }
-
-        .angular-size-option:hover,
-        .angular-size-option.selected {
-            border-color: #2c2c2c;
-            background: #2c2c2c;
-            color: white;
-            transform: skew(-10deg) scale(1.05);
-        }
-
-        .angular-add-cart {
-            background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+        .btn-primary {
+            flex: 1;
+            padding: 18px 30px;
+            background: #8B4513;
             color: white;
             border: none;
-            padding: 20px 50px;
-            font-family: 'Josefin Sans', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 500;
-            letter-spacing: 2px;
+            font-family: 'Cabin', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.4s ease;
-            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
-            transform: skew(-5deg);
-            width: fit-content;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .angular-add-cart:hover {
-            transform: skew(-5deg) translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        .btn-primary:hover {
+            background: #A0522D;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
         }
 
-        .shipping-info {
+        .btn-secondary {
+            flex: 1;
+            padding: 18px 30px;
+            background: none;
+            color: #8B4513;
+            border: 2px solid #8B4513;
+            font-family: 'Cabin', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: #8B4513;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .sharing-options {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .sharing-options span {
             font-family: 'Cabin', sans-serif;
             font-size: 0.9rem;
             color: #666;
-            margin-top: 30px;
-            transform: skew(-2deg);
-            padding-left: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        /* Diagonal decorative elements */
-        .diagonal-accent {
-            position: absolute;
-            width: 3px;
-            height: 150px;
-            background: linear-gradient(45deg, #e8e8e8, transparent);
-            transform: rotate(45deg);
-            opacity: 0.3;
+        .share-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #666;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
         }
 
-        .accent-1 {
-            top: 20%;
-            right: 10%;
+        .share-btn:hover {
+            border-color: #8B4513;
+            color: #8B4513;
+            transform: translateY(-2px);
         }
 
-        .accent-2 {
-            bottom: 30%;
-            left: 5%;
-            transform: rotate(-45deg);
-        }
-
-        @media (max-width: 968px) {
-            .product-layout {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-            
-            .angular-image-container {
-                height: 400px;
-                margin: 0 auto;
-                max-width: 500px;
-            }
-            
-            .product-title {
-                font-size: 2.5rem;
-                letter-spacing: 3px;
-            }
-            
-            .nav-content {
-                padding: 20px 20px;
-            }
-            
-            .main-content {
-                padding: 40px 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-content {
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .product-container {
                 flex-direction: column;
-                gap: 15px;
-                padding: 15px 20px;
-            }
-            
-            .nav-links {
-                order: -1;
-                gap: 20px;
-            }
-            
-            .nav-bar {
                 height: auto;
-                min-height: 80px;
-                clip-path: polygon(0% 0%, 100% 0%, 95% 100%, 0% 100%);
             }
-            
-            .angular-image-container {
-                height: 300px;
+
+            .image-section {
+                height: 50vh;
             }
-            
+
+            .details-section {
+                padding: 40px 30px;
+            }
+
+            .vertical-line {
+                display: none;
+            }
+
             .product-title {
                 font-size: 2rem;
-                letter-spacing: 2px;
             }
-            
+
             .product-price {
-                font-size: 2.2rem;
+                font-size: 1.5rem;
             }
-            
-            .spec-grid {
-                grid-template-columns: 1fr;
+
+            .action-buttons {
+                flex-direction: column;
             }
-            
-            .size-options {
-                justify-content: center;
+
+            .nav-container {
+                padding: 0 20px;
             }
-            
-            .angular-add-cart {
-                align-self: center;
-                padding: 18px 40px;
+        }
+
+        /* Loading animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
-    <div class="angular-container">
-        <div class="diagonal-accent accent-1"></div>
-        <div class="diagonal-accent accent-2"></div>
-        
-        <nav class="nav-bar">
-            <div class="nav-content">
-                <a href="grid.html" class="back-link">← Shop</a>
-                <h1 class="nav-title">ANGULAR</h1>
-                <div class="nav-links">
-                    <a href="index.html">Home</a>
-                    <a href="grid.html">Shop</a>
-                    <a href="#about">About</a>
-                </div>
+    <nav class="navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="back-button">← Demo Selection</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="grid.html">Gallery</a>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <main class="main-content">
-            <div class="product-layout">
-                <div class="image-section">
-                    <div class="angular-image-container"></div>
-                </div>
+    <main class="main-content">
+        <div class="product-container">
+            <div class="image-section">
+                <img id="productImage" src="" alt="" class="product-image">
+                <div class="image-overlay"></div>
+            </div>
+            
+            <div class="details-section">
+                <div class="vertical-line"></div>
                 
-                <div class="details-section">
-                    <div class="angular-details">
-                        <h1 class="product-title">NANTU-WAMA</h1>
-                        <p class="product-subtitle">Not Alive in Red - Limited Edition Print</p>
-                        <p class="product-price">$280</p>
-                        
-                        <div class="product-description">
-                            An angular exploration of native flora through the intersection of traditional photographic processes and contemporary artistic vision. This piece challenges conventional botanical photography through deliberate compositional choices and chemical manipulation in the darkroom.
+                <div class="fade-in">
+                    <div id="productCategory" class="product-category"></div>
+                    <h1 id="productTitle" class="product-title"></h1>
+                    <div id="productPrice" class="product-price"></div>
+                    <p id="productDescription" class="product-description"></p>
+                </div>
+
+                <div class="fade-in" style="animation-delay: 0.2s">
+                    <div class="product-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Medium</span>
+                            <span class="detail-value">Analog Photography</span>
                         </div>
-                        
-                        <div class="angular-specs">
-                            <div class="spec-grid">
-                                <div class="spec-item">
-                                    <div class="spec-label">Process</div>
-                                    <div class="spec-value">Analog Darkroom</div>
-                                </div>
-                                <div class="spec-item">
-                                    <div class="spec-label">Medium</div>
-                                    <div class="spec-value">Silver Gelatin</div>
-                                </div>
-                                <div class="spec-item">
-                                    <div class="spec-label">Edition</div>
-                                    <div class="spec-value">25 Prints</div>
-                                </div>
-                                <div class="spec-item">
-                                    <div class="spec-label">Year</div>
-                                    <div class="spec-value">2023</div>
-                                </div>
-                            </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Edition</span>
+                            <span class="detail-value">Limited Edition of 25</span>
                         </div>
-                        
-                        <div class="angular-purchase">
-                            <div class="size-options">
-                                <div class="angular-size-option selected">8×10"</div>
-                                <div class="angular-size-option">11×14"</div>
-                                <div class="angular-size-option">16×20"</div>
-                            </div>
-                            
-                            <button class="angular-add-cart">ADD TO CART</button>
-                            
-                            <div class="shipping-info">
-                                Printed on demand in Adelaide<br>
-                                Ships worldwide within 5-7 days<br>
-                                Each print hand-signed and numbered
-                            </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Size</span>
+                            <span class="detail-value">40 × 60 cm</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Year</span>
+                            <span class="detail-value">2023</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Availability</span>
+                            <span class="detail-value">In Stock</span>
                         </div>
                     </div>
                 </div>
+
+                <div class="fade-in" style="animation-delay: 0.4s">
+                    <div class="action-buttons">
+                        <a href="#" class="btn-primary">Add to Collection</a>
+                        <a href="#" class="btn-secondary">Inquire</a>
+                    </div>
+
+                    <div class="sharing-options">
+                        <span>Share:</span>
+                        <a href="#" class="share-btn">📧</a>
+                        <a href="#" class="share-btn">🔗</a>
+                        <a href="#" class="share-btn">💬</a>
+                    </div>
+                </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
     <script>
-        // Size selection functionality
-        document.querySelectorAll('.angular-size-option').forEach(option => {
-            option.addEventListener('click', function() {
-                document.querySelectorAll('.angular-size-option').forEach(opt => opt.classList.remove('selected'));
-                this.classList.add('selected');
-            });
+        const products = [
+            {
+                id: 1,
+                title: "Nantu Wama Not Alive",
+                category: "Flash Photos Parklands",
+                price: "$450",
+                description: "A contemplative study in red tones, exploring the intersection of natural forms and photographic process. This piece represents a deep engagement with the Australian landscape through the lens of analog photography, where time and chemistry become as important as light and shadow.",
+                image: "../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg"
+            },
+            {
+                id: 2,
+                title: "Sideroxylon in Magenta",
+                category: "Flash Photos Parklands",
+                price: "$420",
+                description: "Botanical coordinates captured through analog processes, revealing hidden geometries in nature. Each coordinate represents not just a location, but a moment of connection between artist, landscape, and the slow revelation of the photographic medium.",
+                image: "../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_34°5415.922S-138°3616.622E-sideroxylon-in-magenta-1366x2048.jpg"
+            },
+            {
+                id: 3,
+                title: "Citriodora in Blue",
+                category: "Flash Photos Parklands",
+                price: "$380",
+                description: "Blue-toned exploration of eucalyptus forms, emphasizing the meditative quality of photographic seeing. The color palette emerges from the chemical dialogue between plant matter and photographic emulsion.",
+                image: "../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_citriodora-in-blue-scaled.jpg"
+            },
+            {
+                id: 4,
+                title: "Workshop Study #1",
+                category: "Still Life",
+                price: "$320",
+                description: "Collaborative workshop piece exploring texture and form through still life composition. Created during an intensive exploration of material qualities and their photographic translation.",
+                image: "../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg"
+            },
+            {
+                id: 5,
+                title: "Workshop Study #2",
+                category: "Still Life",
+                price: "$340",
+                description: "Second piece from collaborative series, focusing on light and shadow relationships. The interplay between objects becomes a study in photographic grammar.",
+                image: "../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2395-Edit-7.jpg"
+            },
+            {
+                id: 6,
+                title: "Workshop Study #3",
+                category: "Still Life",
+                price: "$360",
+                description: "Continuation of workshop exploration, emphasizing material qualities and surface textures. Each surface tells a story of time, use, and the patient observation of the photographer.",
+                image: "../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2417-Edit-2.jpg"
+            },
+            {
+                id: 7,
+                title: "Analog Process #1",
+                category: "Still Life",
+                price: "$280",
+                description: "Film-based study capturing the essence of analog photographic processes. The grain and imperfections become integral to the meaning, celebrating the handmade quality of traditional photography.",
+                image: "../images/STILL LIFE/0002_000039340002.jpg"
+            },
+            {
+                id: 8,
+                title: "Transport Study",
+                category: "TFL",
+                price: "$240",
+                description: "Urban transportation as subject matter, exploring movement and stillness in city spaces. The rhythm of urban life captured through the contemplative pace of analog photography.",
+                image: "../images/TFL/20230930_127523-scaled.jpg"
+            },
+            {
+                id: 9,
+                title: "Artist Taskforce",
+                category: "Whack Photography",
+                price: "$300",
+                description: "Collaborative project documentation, capturing the energy of creative processes. A moment of artistic community frozen in time, celebrating the collective nature of creative work.",
+                image: "../images/WHACK PHOTOGRAPHY/Artist Taskforce 22.jpg"
+            }
+        ];
+
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function loadProduct() {
+            const productId = parseInt(getUrlParameter('id'));
+            const product = products.find(p => p.id === productId);
+            
+            if (product) {
+                document.getElementById('productImage').src = product.image;
+                document.getElementById('productImage').alt = product.title;
+                document.getElementById('productCategory').textContent = product.category;
+                document.getElementById('productTitle').textContent = product.title;
+                document.getElementById('productPrice').textContent = product.price;
+                document.getElementById('productDescription').textContent = product.description;
+                document.title = `${product.title} - Demo 7 - Rosina Possingham`;
+            } else {
+                // Fallback to first product if ID not found
+                const fallback = products[0];
+                document.getElementById('productImage').src = fallback.image;
+                document.getElementById('productImage').alt = fallback.title;
+                document.getElementById('productCategory').textContent = fallback.category;
+                document.getElementById('productTitle').textContent = fallback.title;
+                document.getElementById('productPrice').textContent = fallback.price;
+                document.getElementById('productDescription').textContent = fallback.description;
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProduct();
         });
     </script>
 </body>

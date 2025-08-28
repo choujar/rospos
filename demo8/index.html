@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo 8: Circular Navigation - Rosina Possingham</title>
+    <title>Demo 9: Typography - Rosina Possingham</title>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,27 +14,28 @@
 
         body {
             font-family: 'Josefin Sans', sans-serif;
-            height: 100vh;
-            overflow: hidden;
-            background: radial-gradient(circle at center, #f8f6f0 0%, #e8e4dc 70%, #d8d2c8 100%);
-            position: relative;
+            background: #f8f6f0;
+            min-height: 100vh;
+            line-height: 1.6;
         }
 
         .back-button {
             position: fixed;
-            top: 20px;
-            left: 20px;
+            top: 30px;
+            left: 30px;
             z-index: 1000;
             background: rgba(255, 255, 255, 0.9);
             border: 1px solid #ddd;
-            padding: 8px 16px;
-            border-radius: 50px;
+            padding: 10px 20px;
+            border-radius: 2px;
             text-decoration: none;
             color: #333;
             font-family: 'Cabin', sans-serif;
             font-size: 14px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
         .back-button:hover {
@@ -43,355 +44,415 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
-        .circular-container {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .typography-container {
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .center-circle {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #fff 0%, #f5f3ef 100%);
-            box-shadow: 
-                0 0 0 1px rgba(0,0,0,0.05),
-                0 20px 60px rgba(0,0,0,0.1),
-                inset 0 1px 0 rgba(255,255,255,0.8);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            transition: all 0.6s ease;
-        }
-
-        .center-circle:hover {
-            transform: scale(1.05);
-            box-shadow: 
-                0 0 0 1px rgba(0,0,0,0.05),
-                0 30px 80px rgba(0,0,0,0.15),
-                inset 0 1px 0 rgba(255,255,255,0.8);
-        }
-
-        .center-logo {
-            font-size: 2.5rem;
+        .main-heading {
+            font-size: clamp(4rem, 12vw, 18rem);
             font-weight: 100;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
             color: #333;
-            margin-bottom: 10px;
-            letter-spacing: 0.2em;
-            text-align: center;
-        }
-
-        .center-tagline {
-            font-family: 'Cabin', sans-serif;
-            font-size: 0.9rem;
-            color: #666;
-            text-align: center;
-            letter-spacing: 0.1em;
+            margin-bottom: 60px;
             text-transform: uppercase;
+            position: relative;
         }
 
-        .orbital-items {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            border: 1px dashed rgba(0,0,0,0.1);
-            animation: rotate 60s linear infinite;
-        }
-
-        .orbital-item {
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #fff 0%, #f8f6f0 100%);
-            box-shadow: 
-                0 8px 32px rgba(0,0,0,0.1),
-                inset 0 1px 0 rgba(255,255,255,0.8);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            text-decoration: none;
-            color: #333;
-            animation: counter-rotate 60s linear infinite;
-            border: 2px solid transparent;
-        }
-
-        .orbital-item:hover {
-            transform: scale(1.2);
-            box-shadow: 
-                0 16px 48px rgba(0,0,0,0.2),
-                inset 0 1px 0 rgba(255,255,255,0.9);
-            border-color: rgba(139, 69, 19, 0.3);
-            z-index: 20;
-        }
-
-        .orbital-item:nth-child(1) {
-            top: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #8B4513, #A0522D);
-            color: white;
-        }
-
-        .orbital-item:nth-child(2) {
-            top: 50%;
-            right: -60px;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, #556B2F, #6B8E23);
-            color: white;
-        }
-
-        .orbital-item:nth-child(3) {
-            bottom: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #4682B4, #5F9EA0);
-            color: white;
-        }
-
-        .orbital-item:nth-child(4) {
-            top: 50%;
-            left: -60px;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, #8B008B, #9932CC);
-            color: white;
-        }
-
-        .item-title {
-            font-size: 1rem;
+        .main-heading .artist-name {
+            display: block;
+            font-size: clamp(2rem, 6vw, 8rem);
             font-weight: 300;
-            margin-bottom: 5px;
-            text-align: center;
-            letter-spacing: 0.05em;
-        }
-
-        .item-count {
-            font-family: 'Cabin', sans-serif;
-            font-size: 0.7rem;
-            opacity: 0.9;
-            text-align: center;
+            opacity: 0.7;
+            margin-top: 20px;
             letter-spacing: 0.1em;
+        }
+
+        .subtitle {
+            font-family: 'Cabin', sans-serif;
+            font-size: clamp(1rem, 2.5vw, 2rem);
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 80px;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
+            position: relative;
+            padding-left: 60px;
         }
 
-        /* Floating particles */
-        .particle {
+        .subtitle::before {
+            content: '';
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(139, 69, 19, 0.3);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
+            left: 0;
+            top: 50%;
+            width: 40px;
+            height: 1px;
+            background: #8B4513;
+            transform: translateY(-50%);
         }
 
-        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .particle:nth-child(2) { top: 60%; left: 15%; animation-delay: 2s; }
-        .particle:nth-child(3) { top: 30%; right: 20%; animation-delay: 4s; }
-        .particle:nth-child(4) { bottom: 40%; right: 10%; animation-delay: 6s; }
-        .particle:nth-child(5) { bottom: 20%; left: 25%; animation-delay: 1s; }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .navigation-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 100px;
         }
 
-        @keyframes counter-rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(-360deg); }
+        .nav-section {
+            position: relative;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.6);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            border: 1px solid transparent;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.3; }
-            50% { transform: translateY(-20px) translateX(10px) scale(1.2); opacity: 0.8; }
+        .nav-section:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border-color: rgba(139, 69, 19, 0.2);
         }
 
-        /* Background pattern */
-        .background-pattern {
+        .nav-section::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            opacity: 0.03;
-            background-image: 
-                radial-gradient(circle at 25% 25%, #333 2px, transparent 2px),
-                radial-gradient(circle at 75% 75%, #333 2px, transparent 2px);
-            background-size: 100px 100px;
-            background-position: 0 0, 50px 50px;
-            animation: pattern-drift 30s linear infinite;
+            height: 4px;
+            background: linear-gradient(90deg, transparent 0%, #8B4513 50%, transparent 100%);
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
         }
 
-        @keyframes pattern-drift {
-            from { transform: translate(0, 0); }
-            to { transform: translate(100px, 100px); }
+        .nav-section:hover::before {
+            transform: scaleX(1);
+        }
+
+        .section-number {
+            font-size: 8rem;
+            font-weight: 100;
+            color: rgba(139, 69, 19, 0.1);
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            line-height: 1;
+            pointer-events: none;
+            transition: all 0.6s ease;
+        }
+
+        .nav-section:hover .section-number {
+            color: rgba(139, 69, 19, 0.2);
+            transform: scale(1.1);
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 200;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-description {
+            font-family: 'Cabin', sans-serif;
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.9rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            z-index: 2;
+        }
+
+        .pieces-count {
+            color: #8B4513;
+            font-weight: 600;
+        }
+
+        .year-range {
+            opacity: 0.7;
+        }
+
+        /* Specific styling for each section */
+        .nav-section.flash {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.03) 0%, rgba(160, 82, 45, 0.03) 100%);
+        }
+
+        .nav-section.still {
+            background: linear-gradient(135deg, rgba(85, 107, 47, 0.03) 0%, rgba(107, 142, 35, 0.03) 100%);
+        }
+
+        .nav-section.tfl {
+            background: linear-gradient(135deg, rgba(70, 130, 180, 0.03) 0%, rgba(95, 158, 160, 0.03) 100%);
+        }
+
+        .nav-section.whack {
+            background: linear-gradient(135deg, rgba(139, 0, 139, 0.03) 0%, rgba(153, 50, 204, 0.03) 100%);
+        }
+
+        .footer-text {
+            text-align: center;
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.9rem;
+            color: #999;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 80px;
+            position: relative;
+            padding-top: 40px;
+        }
+
+        .footer-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100px;
+            height: 1px;
+            background: #ddd;
+            transform: translateX(-50%);
+        }
+
+        /* Typography decorations */
+        .text-decoration {
+            position: absolute;
+            font-size: 12rem;
+            font-weight: 100;
+            color: rgba(139, 69, 19, 0.03);
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+        }
+
+        .text-decoration.large {
+            top: 20%;
+            right: -100px;
+            transform: rotate(-90deg);
+        }
+
+        .text-decoration.medium {
+            bottom: 30%;
+            left: -50px;
+            font-size: 8rem;
+            transform: rotate(90deg);
         }
 
         /* Mobile responsiveness */
         @media (max-width: 768px) {
-            .center-circle {
-                width: 200px;
-                height: 200px;
+            .typography-container {
+                padding: 40px 20px;
             }
 
-            .center-logo {
-                font-size: 1.8rem;
+            .back-button {
+                top: 20px;
+                left: 20px;
+                padding: 8px 16px;
             }
 
-            .center-tagline {
-                font-size: 0.8rem;
+            .main-heading {
+                margin-bottom: 40px;
             }
 
-            .orbital-items {
-                width: 400px;
-                height: 400px;
+            .subtitle {
+                margin-bottom: 60px;
+                padding-left: 40px;
             }
 
-            .orbital-item {
-                width: 80px;
-                height: 80px;
+            .navigation-sections {
+                gap: 30px;
+                margin-bottom: 60px;
             }
 
-            .orbital-item:nth-child(1) {
-                top: -40px;
+            .nav-section {
+                padding: 40px 30px;
             }
 
-            .orbital-item:nth-child(2) {
-                right: -40px;
+            .section-number {
+                font-size: 5rem;
+                top: -10px;
+                right: 15px;
             }
 
-            .orbital-item:nth-child(3) {
-                bottom: -40px;
+            .section-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
             }
 
-            .orbital-item:nth-child(4) {
-                left: -40px;
-            }
-
-            .item-title {
-                font-size: 0.8rem;
-            }
-
-            .item-count {
-                font-size: 0.6rem;
+            .text-decoration {
+                display: none;
             }
         }
 
-        /* Loading animation */
-        .fade-in {
+        /* Loading animations */
+        .fade-in-up {
             opacity: 0;
-            animation: fadeIn 1.2s ease forwards;
+            transform: translateY(60px);
+            animation: fadeInUp 1s ease forwards;
         }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
     </style>
 </head>
 <body>
-    <div class="background-pattern"></div>
-    
-    <!-- Floating particles -->
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
+    <div class="text-decoration large">PHOTOGRAPHY</div>
+    <div class="text-decoration medium">ART</div>
 
     <a href="../index.html" class="back-button">← Demo Selection</a>
 
-    <div class="circular-container fade-in">
-        <div class="center-circle">
-            <div class="center-logo">RP</div>
-            <div class="center-tagline">Rosina Possingham</div>
+    <div class="typography-container">
+        <h1 class="main-heading fade-in-up">
+            Works
+            <span class="artist-name">Rosina Possingham</span>
+        </h1>
+
+        <p class="subtitle fade-in-up stagger-1">
+            Contemplative studies in analog photography
+        </p>
+
+        <div class="navigation-sections">
+            <a href="grid.html?category=flash" class="nav-section flash fade-in-up stagger-2">
+                <div class="section-number">01</div>
+                <h2 class="section-title">Flash Photos Parklands</h2>
+                <p class="section-description">
+                    An exploration of Australian landscapes through the lens of analog processes, 
+                    where botanical coordinates become poetic coordinates of time and place.
+                </p>
+                <div class="section-meta">
+                    <span class="pieces-count">3 Pieces</span>
+                    <span class="year-range">2023</span>
+                </div>
+            </a>
+
+            <a href="grid.html?category=still" class="nav-section still fade-in-up stagger-3">
+                <div class="section-number">02</div>
+                <h2 class="section-title">Still Life Studies</h2>
+                <p class="section-description">
+                    Collaborative workshop pieces that investigate the relationship between 
+                    objects, light, and the patient observation required by analog photography.
+                </p>
+                <div class="section-meta">
+                    <span class="pieces-count">4 Pieces</span>
+                    <span class="year-range">2022-2023</span>
+                </div>
+            </a>
+
+            <a href="grid.html?category=tfl" class="nav-section tfl fade-in-up stagger-4">
+                <div class="section-number">03</div>
+                <h2 class="section-title">Transport Series</h2>
+                <p class="section-description">
+                    Urban transportation as meditation, capturing the rhythm of city life 
+                    through the contemplative pace of traditional photographic methods.
+                </p>
+                <div class="section-meta">
+                    <span class="pieces-count">1 Piece</span>
+                    <span class="year-range">2023</span>
+                </div>
+            </a>
+
+            <a href="grid.html?category=whack" class="nav-section whack fade-in-up stagger-5">
+                <div class="section-number">04</div>
+                <h2 class="section-title">Collaborative Works</h2>
+                <p class="section-description">
+                    Documentation of artistic community and creative processes, celebrating 
+                    the collective nature of art-making and shared creative spaces.
+                </p>
+                <div class="section-meta">
+                    <span class="pieces-count">1 Piece</span>
+                    <span class="year-range">2022</span>
+                </div>
+            </a>
         </div>
 
-        <div class="orbital-items">
-            <a href="grid.html?category=flash" class="orbital-item">
-                <div class="item-title">Flash</div>
-                <div class="item-count">3 Pieces</div>
-            </a>
-
-            <a href="grid.html?category=still" class="orbital-item">
-                <div class="item-title">Still Life</div>
-                <div class="item-count">4 Pieces</div>
-            </a>
-
-            <a href="grid.html?category=tfl" class="orbital-item">
-                <div class="item-title">TFL</div>
-                <div class="item-count">1 Piece</div>
-            </a>
-
-            <a href="grid.html?category=whack" class="orbital-item">
-                <div class="item-title">Whack</div>
-                <div class="item-count">1 Piece</div>
-            </a>
-        </div>
+        <p class="footer-text fade-in-up stagger-5">
+            Analog Photography • Limited Editions • Available for Collection
+        </p>
     </div>
 
     <script>
-        // Add interactive hover effects
         document.addEventListener('DOMContentLoaded', () => {
-            const orbitalItems = document.querySelectorAll('.orbital-item');
-            const centerCircle = document.querySelector('.center-circle');
-
-            orbitalItems.forEach(item => {
-                item.addEventListener('mouseenter', () => {
-                    centerCircle.style.transform = 'scale(0.95)';
-                    centerCircle.style.filter = 'blur(1px)';
+            // Add click ripple effects
+            const sections = document.querySelectorAll('.nav-section');
+            
+            sections.forEach(section => {
+                section.addEventListener('click', (e) => {
+                    if (e.target.tagName !== 'A') {
+                        e.preventDefault();
+                        const href = section.getAttribute('href');
+                        if (href) {
+                            window.location.href = href;
+                        }
+                    }
                 });
 
-                item.addEventListener('mouseleave', () => {
-                    centerCircle.style.transform = 'scale(1)';
-                    centerCircle.style.filter = 'none';
+                // Add subtle parallax effect on mouse move
+                section.addEventListener('mousemove', (e) => {
+                    const rect = section.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+                    const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+                    
+                    const number = section.querySelector('.section-number');
+                    if (number) {
+                        number.style.transform = `scale(1.1) translate(${x * 5}px, ${y * 5}px)`;
+                    }
                 });
-            });
 
-            // Add click ripple effect
-            orbitalItems.forEach(item => {
-                item.addEventListener('click', (e) => {
-                    const ripple = document.createElement('div');
-                    ripple.style.position = 'absolute';
-                    ripple.style.borderRadius = '50%';
-                    ripple.style.background = 'rgba(255,255,255,0.6)';
-                    ripple.style.transform = 'scale(0)';
-                    ripple.style.animation = 'ripple 0.6s linear';
-                    ripple.style.left = '50%';
-                    ripple.style.top = '50%';
-                    ripple.style.width = '20px';
-                    ripple.style.height = '20px';
-                    ripple.style.marginLeft = '-10px';
-                    ripple.style.marginTop = '-10px';
-
-                    item.appendChild(ripple);
-
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
+                section.addEventListener('mouseleave', () => {
+                    const number = section.querySelector('.section-number');
+                    if (number) {
+                        number.style.transform = '';
+                    }
                 });
             });
-        });
 
-        // Add CSS for ripple animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
+            // Typewriter effect for main heading
+            const mainHeading = document.querySelector('.main-heading');
+            const text = mainHeading.textContent;
+            mainHeading.textContent = '';
+            let i = 0;
+            
+            setTimeout(() => {
+                function typeWriter() {
+                    if (i < text.length) {
+                        mainHeading.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 50);
+                    }
                 }
-            }
-        `;
-        document.head.appendChild(style);
+                typeWriter();
+            }, 500);
+        });
     </script>
 </body>
 </html>

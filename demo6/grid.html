@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diamond Grid - Rosina Possingham</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Demo 7: Vertical Grid - Rosina Possingham</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,59 +14,46 @@
 
         body {
             font-family: 'Josefin Sans', sans-serif;
-            background: linear-gradient(135deg, #fefefe 0%, #f5f5f5 100%);
-            line-height: 1.6;
+            background: #f8f6f0;
             min-height: 100vh;
         }
 
-        .header {
-            position: sticky;
+        .navigation {
+            position: fixed;
             top: 0;
-            background: rgba(254, 254, 254, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
+            left: 0;
+            right: 0;
+            background: rgba(248, 246, 240, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
             padding: 20px 0;
+            z-index: 100;
         }
 
-        .header::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 20%;
-            right: 20%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #e8e8e8, transparent);
-        }
-
-        .header-content {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
             padding: 0 40px;
         }
 
-        .back-link {
-            color: #2c2c2c;
+        .back-button {
+            background: none;
+            border: 1px solid #333;
+            padding: 8px 20px;
+            border-radius: 20px;
             text-decoration: none;
+            color: #333;
             font-family: 'Cabin', sans-serif;
-            font-weight: 500;
+            font-size: 14px;
             transition: all 0.3s ease;
-            position: relative;
         }
 
-        .back-link:hover {
-            opacity: 0.7;
-            transform: translateX(-5px);
-        }
-
-        .shop-title {
-            font-size: 2.5rem;
-            font-weight: 300;
-            letter-spacing: 4px;
-            color: #2c2c2c;
-            transform: skew(-5deg);
+        .back-button:hover {
+            background: #333;
+            color: white;
         }
 
         .nav-links {
@@ -77,139 +62,162 @@
         }
 
         .nav-links a {
-            color: #2c2c2c;
             text-decoration: none;
+            color: #333;
             font-family: 'Cabin', sans-serif;
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
         }
 
-        .nav-links a:hover {
-            opacity: 0.7;
-            transform: translateY(-2px);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #8B4513;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #8B4513;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
         }
 
         .main-content {
-            max-width: 1400px;
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        .grid-container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 80px 40px;
+            padding: 40px;
         }
 
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 60px 40px;
-            justify-items: center;
-        }
-
-        .diamond-card {
-            width: 280px;
-            height: 280px;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.4s ease;
-        }
-
-        .diamond-card:hover {
-            transform: scale(1.05) rotate(2deg);
-        }
-
-        .diamond-shape {
-            width: 100%;
-            height: 100%;
-            transform: rotate(45deg);
-            overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-        }
-
-        .diamond-card:hover .diamond-shape {
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            transform: rotate(45deg) scale(1.02);
-        }
-
-        .diamond-shape::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
-            transition: all 0.4s ease;
-        }
-
-        .diamond-card:hover .diamond-shape::before {
-            background: linear-gradient(135deg, rgba(0,0,0,0.1), rgba(0,0,0,0.05));
-        }
-
-        .diamond-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
+        .category-title {
             text-align: center;
-            color: white;
-            z-index: 2;
-            width: 200px;
+            font-size: 3rem;
+            font-weight: 200;
+            letter-spacing: 0.1em;
+            margin-bottom: 60px;
+            color: #333;
+            text-transform: uppercase;
         }
 
-        .diamond-title {
-            font-size: 1.4rem;
-            font-weight: 400;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        .vertical-grid {
+            display: flex;
+            gap: 20px;
+            height: 80vh;
+            overflow: hidden;
         }
 
-        .diamond-subtitle {
+        .grid-column {
+            flex: 1;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding-right: 10px;
+        }
+
+        .grid-column::-webkit-scrollbar {
+            display: none;
+        }
+
+        .product-card {
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            color: #333;
+            letter-spacing: 0.05em;
+        }
+
+        .product-category {
             font-family: 'Cabin', sans-serif;
             font-size: 0.9rem;
-            opacity: 0.9;
+            color: #666;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
             font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            margin-bottom: 12px;
+            color: #8B4513;
+            margin-bottom: 15px;
         }
 
-        .diamond-price {
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        .product-description {
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.9rem;
+            color: #777;
+            line-height: 1.4;
+            margin-bottom: 20px;
         }
 
-        /* Diamond background images */
-        .diamond-1 { background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg'); }
-        .diamond-2 { background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg'); }
-        .diamond-3 { background-image: url('../images/TFL/20230930_127523-scaled.jpg'); }
-        .diamond-4 { background-image: url('../images/WHACK PHOTOGRAPHY/Artist Taskforce 22.jpg'); }
-        .diamond-5 { background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2395-Edit-7.jpg'); }
-        .diamond-6 { background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_34°5415.922S-138°3616.622E-sideroxylon-in-magenta-1366x2048.jpg'); }
-        .diamond-7 { background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2417-Edit-2.jpg'); }
-        .diamond-8 { background-image: url('../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2471-Edit-3.jpg'); }
-        .diamond-9 { background-image: url('../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_citriodora-in-blue-scaled.jpg'); }
+        .view-product {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid #8B4513;
+            color: #8B4513;
+            text-decoration: none;
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+        }
 
-        /* Staggered animation on load */
-        .diamond-card {
+        .view-product:hover {
+            background: #8B4513;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Staggered animation for cards */
+        .product-card {
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(30px);
             animation: fadeInUp 0.6s ease forwards;
         }
-
-        .diamond-card:nth-child(1) { animation-delay: 0.1s; }
-        .diamond-card:nth-child(2) { animation-delay: 0.2s; }
-        .diamond-card:nth-child(3) { animation-delay: 0.3s; }
-        .diamond-card:nth-child(4) { animation-delay: 0.4s; }
-        .diamond-card:nth-child(5) { animation-delay: 0.5s; }
-        .diamond-card:nth-child(6) { animation-delay: 0.6s; }
-        .diamond-card:nth-child(7) { animation-delay: 0.7s; }
-        .diamond-card:nth-child(8) { animation-delay: 0.8s; }
-        .diamond-card:nth-child(9) { animation-delay: 0.9s; }
 
         @keyframes fadeInUp {
             to {
@@ -218,196 +226,208 @@
             }
         }
 
-        /* Diagonal separator lines */
-        .diagonal-separator {
-            position: absolute;
-            width: 2px;
-            height: 100px;
-            background: linear-gradient(to bottom, transparent, #e8e8e8, transparent);
-            transform: rotate(45deg);
-            opacity: 0.3;
-        }
-
-        .separator-1 {
-            top: 20%;
-            left: 25%;
-        }
-
-        .separator-2 {
-            top: 60%;
-            right: 25%;
-            transform: rotate(-45deg);
-        }
-
+        /* Responsive design */
         @media (max-width: 768px) {
-            .header-content {
+            .nav-container {
                 padding: 0 20px;
             }
-            
-            .shop-title {
-                font-size: 1.8rem;
-                letter-spacing: 2px;
-            }
-            
-            .nav-links {
-                gap: 20px;
-            }
-            
-            .main-content {
-                padding: 60px 20px;
-            }
-            
-            .products-grid {
-                gap: 40px 30px;
-            }
-            
-            .diamond-card {
-                width: 240px;
-                height: 240px;
-            }
-            
-            .diamond-content {
-                width: 180px;
-            }
-            
-            .diamond-title {
-                font-size: 1.2rem;
-            }
-        }
 
-        @media (max-width: 480px) {
-            .header-content {
-                flex-direction: column;
+            .nav-links {
                 gap: 15px;
             }
-            
-            .nav-links {
-                order: -1;
+
+            .category-title {
+                font-size: 2rem;
             }
-            
-            .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+            .vertical-grid {
+                flex-direction: column;
+                height: auto;
+                gap: 0;
             }
-            
-            .diamond-card {
-                width: 200px;
-                height: 200px;
+
+            .grid-column {
+                overflow-y: visible;
             }
-            
-            .diamond-content {
-                width: 150px;
-            }
-            
-            .diamond-title {
-                font-size: 1.1rem;
-                letter-spacing: 1px;
-            }
-            
-            .diamond-subtitle {
-                font-size: 0.8rem;
+
+            .product-card {
+                margin-bottom: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="diagonal-separator separator-1"></div>
-    <div class="diagonal-separator separator-2"></div>
-    
-    <header class="header">
-        <div class="header-content">
-            <a href="index.html" class="back-link">← Home</a>
-            <h1 class="shop-title">DIAGONAL</h1>
-            <nav class="nav-links">
-                <a href="#collections">Collections</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </nav>
+    <nav class="navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="back-button">← Demo Selection</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="grid.html" class="active">Gallery</a>
+            </div>
         </div>
-    </header>
+    </nav>
 
     <main class="main-content">
-        <div class="products-grid">
-            <div class="diamond-card" onclick="location.href='product.html'">
-                <div class="diamond-shape diamond-1"></div>
-                <div class="diamond-content">
-                    <h3 class="diamond-title">NANTU-WAMA</h3>
-                    <p class="diamond-subtitle">Not Alive in Red</p>
-                    <p class="diamond-price">$280</p>
-                </div>
-            </div>
-
-            <div class="diamond-card" onclick="location.href='product.html'">
-                <div class="diamond-shape diamond-2"></div>
-                <div class="diamond-content">
-                    <h3 class="diamond-title">WORKSHOP</h3>
-                    <p class="diamond-subtitle">Still Life Study</p>
-                    <p class="diamond-price">$220</p>
-                </div>
-            </div>
-
-            <div class="diamond-card" onclick="location.href='product.html'">
-                <div class="diamond-shape diamond-3"></div>
-                <div class="diamond-content">
-                    <h3 class="diamond-title">TRANSPORT</h3>
-                    <p class="diamond-subtitle">For London</p>
-                    <p class="diamond-price">$320</p>
-                </div>
-            </div>
-
-            <div class="diamond-card" onclick="location.href='product.html'">
-                <div class="diamond-shape diamond-4"></div>
-                <div class="diamond-content">
-                    <h3 class="diamond-title">TASKFORCE</h3>
-                    <p class="diamond-subtitle">Artist Series</p>
-                    <p class="diamond-price">$180</p>
-                </div>
-            </div>
-
-            <div class="diamond-card" onclick="location.href='product.html'">
-                <div class="diamond-shape diamond-5"></div>
-                <div class="diamond-content">
-                    <h3 class="diamond-title">EDIT</h3>
-                    <p class="diamond-subtitle">Workshop #7</p>
-                    <p class="diamond-price">$240</p>
-                </div>
-            </div>
-
-            <div class="diamond-card" onclick="location.href='product.html'">
-                <div class="diamond-shape diamond-6"></div>
-                <div class="diamond-content">
-                    <h3 class="diamond-title">SIDEROXYLON</h3>
-                    <p class="diamond-subtitle">In Magenta</p>
-                    <p class="diamond-price">$290</p>
-                </div>
-            </div>
-
-            <div class="diamond-card" onclick="location.href='product.html'">
-                <div class="diamond-shape diamond-7"></div>
-                <div class="diamond-content">
-                    <h3 class="diamond-title">CONTEMPLATION</h3>
-                    <p class="diamond-subtitle">Workshop #2</p>
-                    <p class="diamond-price">$260</p>
-                </div>
-            </div>
-
-            <div class="diamond-card" onclick="location.href='product.html'">
-                <div class="diamond-shape diamond-8"></div>
-                <div class="diamond-content">
-                    <h3 class="diamond-title">PROCESS</h3>
-                    <p class="diamond-subtitle">Workshop #3</p>
-                    <p class="diamond-price">$210</p>
-                </div>
-            </div>
-
-            <div class="diamond-card" onclick="location.href='product.html'">
-                <div class="diamond-shape diamond-9"></div>
-                <div class="diamond-content">
-                    <h3 class="diamond-title">CITRIODORA</h3>
-                    <p class="diamond-subtitle">In Blue</p>
-                    <p class="diamond-price">$280</p>
-                </div>
+        <div class="grid-container">
+            <h1 class="category-title" id="categoryTitle">All Works</h1>
+            
+            <div class="vertical-grid" id="productGrid">
+                <div class="grid-column" id="column1"></div>
+                <div class="grid-column" id="column2"></div>
+                <div class="grid-column" id="column3"></div>
             </div>
         </div>
     </main>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                title: "Nantu Wama Not Alive",
+                category: "Flash Photos Parklands",
+                price: "$450",
+                description: "A contemplative study in red tones, exploring the intersection of natural forms and photographic process.",
+                image: "../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_-Nantu-Wama-Not-Alive-in-red-scaled.jpg"
+            },
+            {
+                id: 2,
+                title: "Sideroxylon in Magenta",
+                category: "Flash Photos Parklands",
+                price: "$420",
+                description: "Botanical coordinates captured through analog processes, revealing hidden geometries in nature.",
+                image: "../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_34°5415.922S-138°3616.622E-sideroxylon-in-magenta-1366x2048.jpg"
+            },
+            {
+                id: 3,
+                title: "Citriodora in Blue",
+                category: "Flash Photos Parklands",
+                price: "$380",
+                description: "Blue-toned exploration of eucalyptus forms, emphasizing the meditative quality of photographic seeing.",
+                image: "../images/FLASH PHOTOS PARKLANDS/Rosina_Possingham_citriodora-in-blue-scaled.jpg"
+            },
+            {
+                id: 4,
+                title: "Workshop Study #1",
+                category: "Still Life",
+                price: "$320",
+                description: "Collaborative workshop piece exploring texture and form through still life composition.",
+                image: "../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2380-Edit-2.jpg"
+            },
+            {
+                id: 5,
+                title: "Workshop Study #2",
+                category: "Still Life",
+                price: "$340",
+                description: "Second piece from collaborative series, focusing on light and shadow relationships.",
+                image: "../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2395-Edit-7.jpg"
+            },
+            {
+                id: 6,
+                title: "Workshop Study #3",
+                category: "Still Life",
+                price: "$360",
+                description: "Continuation of workshop exploration, emphasizing material qualities and surface textures.",
+                image: "../images/STILL LIFE/EEFM X POS X CASS WORKSHOP-2417-Edit-2.jpg"
+            },
+            {
+                id: 7,
+                title: "Analog Process #1",
+                category: "Still Life",
+                price: "$280",
+                description: "Film-based study capturing the essence of analog photographic processes.",
+                image: "../images/STILL LIFE/0002_000039340002.jpg"
+            },
+            {
+                id: 8,
+                title: "Transport Study",
+                category: "TFL",
+                price: "$240",
+                description: "Urban transportation as subject matter, exploring movement and stillness in city spaces.",
+                image: "../images/TFL/20230930_127523-scaled.jpg"
+            },
+            {
+                id: 9,
+                title: "Artist Taskforce",
+                category: "Whack Photography",
+                price: "$300",
+                description: "Collaborative project documentation, capturing the energy of creative processes.",
+                image: "../images/WHACK PHOTOGRAPHY/Artist Taskforce 22.jpg"
+            }
+        ];
+
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function filterProducts() {
+            const category = getUrlParameter('category');
+            if (!category) return products;
+
+            const categoryMap = {
+                'flash': 'Flash Photos Parklands',
+                'still': 'Still Life',
+                'tfl': 'TFL',
+                'whack': 'Whack Photography'
+            };
+
+            const fullCategoryName = categoryMap[category];
+            return products.filter(product => product.category === fullCategoryName);
+        }
+
+        function updateCategoryTitle() {
+            const category = getUrlParameter('category');
+            const titleElement = document.getElementById('categoryTitle');
+            
+            if (category) {
+                const categoryTitles = {
+                    'flash': 'Flash Photos Parklands',
+                    'still': 'Still Life',
+                    'tfl': 'TFL Collection',
+                    'whack': 'Whack Photography'
+                };
+                titleElement.textContent = categoryTitles[category] || 'All Works';
+            }
+        }
+
+        function createProductCard(product) {
+            return `
+                <div class="product-card" style="animation-delay: ${Math.random() * 0.5}s">
+                    <img src="${product.image}" alt="${product.title}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-category">${product.category}</p>
+                        <p class="product-price">${product.price}</p>
+                        <p class="product-description">${product.description}</p>
+                        <a href="product.html?id=${product.id}" class="view-product">View Details</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function distributeProducts() {
+            const filteredProducts = filterProducts();
+            const columns = [
+                document.getElementById('column1'),
+                document.getElementById('column2'),
+                document.getElementById('column3')
+            ];
+
+            // Clear columns
+            columns.forEach(column => column.innerHTML = '');
+
+            // Distribute products across columns
+            filteredProducts.forEach((product, index) => {
+                const columnIndex = index % 3;
+                columns[columnIndex].innerHTML += createProductCard(product);
+            });
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCategoryTitle();
+            distributeProducts();
+        });
+    </script>
 </body>
 </html>
