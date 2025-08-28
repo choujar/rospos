@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo 8: Radial Grid - Rosina Possingham</title>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Demo 7: Orbital Grid - Rosina Possingham</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Cabin:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -97,82 +97,83 @@
         .main-content {
             padding-top: 100px;
             min-height: 100vh;
+            position: relative;
+        }
+
+        .orbital-container {
+            position: relative;
+            width: 100%;
+            min-height: 300vh;
+            padding: 50px 0;
+        }
+
+        .category-circle {
+            position: fixed;
+            top: 50%;
+            left: -150px;
+            transform: translateY(-50%);
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fff 0%, #f5f3ef 100%);
+            box-shadow: 
+                0 0 0 1px rgba(0,0,0,0.05),
+                20px 20px 60px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.8);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            z-index: 50;
         }
 
         .category-title {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 200;
-            letter-spacing: 0.1em;
-            margin-bottom: 80px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 500;
             color: #333;
             text-transform: uppercase;
+            letter-spacing: 0.2em;
+            text-align: center;
+            margin-left: 150px;
         }
 
-        .radial-container {
-            position: relative;
-            width: 80vw;
-            height: 80vw;
-            max-width: 800px;
-            max-height: 800px;
-            margin: 0 auto;
-        }
-
-        .center-info {
-            position: absolute;
+        .orbital-path {
+            position: fixed;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
+            left: -150px;
+            width: 900px;
+            height: 900px;
             border-radius: 50%;
-            width: 200px;
-            height: 200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
+            border: 1px dashed rgba(139, 69, 19, 0.1);
+            transform: translateY(-50%);
+            pointer-events: none;
+            z-index: 1;
         }
 
-        .center-title {
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: #333;
-            margin-bottom: 10px;
-            letter-spacing: 0.05em;
-        }
-
-        .center-count {
-            font-family: 'Cabin', sans-serif;
-            font-size: 1rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .orbital-products {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding-left: 200px;
         }
 
         .product-card {
-            position: absolute;
-            width: 180px;
-            height: 240px;
+            position: fixed;
+            width: 200px;
+            height: 260px;
             background: white;
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0,0,0,0.15);
             cursor: pointer;
             transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            transform-origin: center center;
+            text-decoration: none;
+            top: 50%;
+            left: 200px;
         }
 
         .product-card:hover {
-            transform: scale(1.15) translateZ(0);
+            transform: scale(1.1);
             box-shadow: 0 20px 60px rgba(0,0,0,0.25);
             z-index: 20;
         }
@@ -191,14 +192,14 @@
         .product-info {
             padding: 15px;
             text-align: center;
-            height: 100px;
+            height: 120px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
         .product-title {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 400;
             color: #333;
             margin-bottom: 5px;
@@ -220,131 +221,41 @@
             color: #8B4513;
         }
 
-        /* Radial positioning */
-        .product-card:nth-child(1) {
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .product-card:nth-child(2) {
-            top: 20%;
-            right: 0;
-            transform: translateY(-50%);
-        }
-
-        .product-card:nth-child(3) {
-            top: 60%;
-            right: 0;
-            transform: translateY(-50%);
-        }
-
-        .product-card:nth-child(4) {
-            bottom: 0;
-            right: 25%;
-            transform: translateX(50%);
-        }
-
-        .product-card:nth-child(5) {
-            bottom: 0;
-            left: 25%;
-            transform: translateX(-50%);
-        }
-
-        .product-card:nth-child(6) {
-            top: 60%;
-            left: 0;
-            transform: translateY(-50%);
-        }
-
-        .product-card:nth-child(7) {
-            top: 20%;
-            left: 0;
-            transform: translateY(-50%);
-        }
-
-        .product-card:nth-child(8) {
-            top: 10%;
-            right: 20%;
-            transform: translate(25%, -25%);
-        }
-
-        .product-card:nth-child(9) {
-            top: 10%;
-            left: 20%;
-            transform: translate(-25%, -25%);
-        }
-
-        /* Connection lines */
-        .connection-line {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent 0%, rgba(139, 69, 19, 0.2) 50%, transparent 100%);
-            transform-origin: left center;
-            opacity: 0.3;
-        }
-
-        /* Loading animations */
-        .product-card {
-            opacity: 0;
-            animation: radiateIn 0.8s ease forwards;
-        }
-
-        @keyframes radiateIn {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) scale(0.5);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) scale(1);
-            }
-        }
-
         /* Mobile responsiveness */
         @media (max-width: 768px) {
             .nav-container {
                 padding: 0 20px;
             }
 
+            .category-circle {
+                left: -100px;
+                width: 250px;
+                height: 250px;
+            }
+
             .category-title {
-                font-size: 2rem;
-                margin-bottom: 40px;
+                font-size: 1.5rem;
+                margin-left: 100px;
             }
 
-            .radial-container {
-                width: 95vw;
-                height: 95vw;
-                max-width: 500px;
-                max-height: 500px;
-            }
-
-            .center-info {
-                width: 120px;
-                height: 120px;
-                padding: 20px;
-            }
-
-            .center-title {
-                font-size: 1rem;
-            }
-
-            .center-count {
-                font-size: 0.8rem;
+            .orbital-path {
+                width: 600px;
+                height: 600px;
+                left: -100px;
             }
 
             .product-card {
-                width: 120px;
-                height: 160px;
+                width: 150px;
+                height: 200px;
             }
 
             .product-image {
-                height: 90px;
+                height: 100px;
             }
 
             .product-info {
                 padding: 10px;
-                height: 70px;
+                height: 100px;
             }
 
             .product-title {
@@ -357,20 +268,6 @@
 
             .product-price {
                 font-size: 0.8rem;
-            }
-        }
-
-        /* Scroll-triggered animations */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
             }
         }
     </style>
@@ -387,15 +284,14 @@
     </nav>
 
     <main class="main-content">
-        <h1 class="category-title fade-in-up" id="categoryTitle">All Works</h1>
-        
-        <div class="radial-container fade-in-up" style="animation-delay: 0.3s">
-            <div class="center-info">
-                <div class="center-title" id="centerTitle">Collection</div>
-                <div class="center-count" id="centerCount">9 Pieces</div>
+        <div class="orbital-container">
+            <div class="category-circle">
+                <div class="category-title" id="categoryTitle">All<br>Works</div>
             </div>
             
-            <div id="productGrid">
+            <div class="orbital-path"></div>
+            
+            <div class="orbital-products" id="productGrid">
                 <!-- Products will be dynamically inserted here -->
             </div>
         </div>
@@ -488,78 +384,80 @@
             return products.filter(product => product.category === fullCategoryName);
         }
 
-        function updateTitles() {
+        function updateCategoryTitle() {
             const category = getUrlParameter('category');
             const titleElement = document.getElementById('categoryTitle');
-            const centerTitleElement = document.getElementById('centerTitle');
-            const centerCountElement = document.getElementById('centerCount');
             
-            const filteredProducts = filterProducts();
-
             if (category) {
                 const categoryTitles = {
-                    'flash': 'Flash Photos Parklands',
-                    'still': 'Still Life',
-                    'tfl': 'TFL Collection',
-                    'whack': 'Whack Photography'
+                    'flash': 'Flash<br>Photos',
+                    'still': 'Still<br>Life',
+                    'tfl': 'TFL',
+                    'whack': 'Whack<br>Photo'
                 };
-                const title = categoryTitles[category] || 'All Works';
-                titleElement.textContent = title;
-                centerTitleElement.textContent = title;
-            } else {
-                centerTitleElement.textContent = 'Collection';
+                titleElement.innerHTML = categoryTitles[category] || 'All<br>Works';
             }
-
-            centerCountElement.textContent = `${filteredProducts.length} Piece${filteredProducts.length !== 1 ? 's' : ''}`;
         }
 
         function createProductCard(product, index) {
-            const card = document.createElement('div');
+            const card = document.createElement('a');
+            card.href = `product.html?id=${product.id}`;
             card.className = 'product-card';
-            card.style.animationDelay = `${index * 0.1}s`;
-            
             card.innerHTML = `
                 <img src="${product.image}" alt="${product.title}" class="product-image">
                 <div class="product-info">
-                    <h3 class="product-title">${product.title}</h3>
-                    <p class="product-category">${product.category}</p>
+                    <div>
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-category">${product.category}</p>
+                    </div>
                     <p class="product-price">${product.price}</p>
                 </div>
             `;
-
-            card.addEventListener('click', () => {
-                window.location.href = `product.html?id=${product.id}`;
-            });
-
             return card;
         }
 
-        function positionCardsRadially(cards) {
-            const container = document.querySelector('.radial-container');
-            const containerRect = container.getBoundingClientRect();
-            const centerX = containerRect.width / 2;
-            const centerY = containerRect.height / 2;
-            const radius = Math.min(centerX, centerY) * 0.7;
-
+        function positionCardsOnOrbit() {
+            const cards = document.querySelectorAll('.product-card');
+            const radius = 450;
+            const centerX = 200;
+            const viewportHeight = window.innerHeight;
+            
             cards.forEach((card, index) => {
-                if (index < 8) {
-                    const angle = (index / 8) * 2 * Math.PI - Math.PI / 2; // Start from top
-                    const x = centerX + Math.cos(angle) * radius - 90; // 90 is half card width
-                    const y = centerY + Math.sin(angle) * radius - 120; // 120 is half card height
+                // Calculate initial angle for each card
+                const baseAngle = -90 + (index * 40); // Start from top (-90°) and space 40° apart
+                card.dataset.baseAngle = baseAngle;
+                card.dataset.index = index;
+            });
 
-                    card.style.left = `${x}px`;
-                    card.style.top = `${y}px`;
-                    card.style.transform = 'none';
+            // Update positions on scroll
+            updateOrbitalPositions();
+        }
+
+        function updateOrbitalPositions() {
+            const cards = document.querySelectorAll('.product-card');
+            const scrollProgress = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            const rotationAmount = scrollProgress * 360; // Full rotation over scroll
+            
+            cards.forEach((card) => {
+                const baseAngle = parseFloat(card.dataset.baseAngle);
+                const currentAngle = baseAngle - rotationAmount;
+                const angleRad = currentAngle * (Math.PI / 180);
+                
+                // Calculate position on orbit
+                const x = Math.cos(angleRad) * 450;
+                const y = Math.sin(angleRad) * 450;
+                
+                // Apply transform
+                card.style.transform = `translate(${x}px, calc(-50% + ${y}px))`;
+                
+                // Fade cards based on position (fade when behind the circle)
+                const normalizedAngle = ((currentAngle % 360) + 360) % 360;
+                if (normalizedAngle > 90 && normalizedAngle < 270) {
+                    card.style.opacity = Math.max(0.3, 1 - ((normalizedAngle - 90) / 180) * 0.7);
+                    card.style.zIndex = 1;
                 } else {
-                    // Additional cards positioned in inner circle
-                    const innerRadius = radius * 0.5;
-                    const angle = ((index - 8) / (cards.length - 8)) * 2 * Math.PI;
-                    const x = centerX + Math.cos(angle) * innerRadius - 90;
-                    const y = centerY + Math.sin(angle) * innerRadius - 120;
-
-                    card.style.left = `${x}px`;
-                    card.style.top = `${y}px`;
-                    card.style.transform = 'none';
+                    card.style.opacity = 1;
+                    card.style.zIndex = 10;
                 }
             });
         }
@@ -567,32 +465,38 @@
         function renderProducts() {
             const filteredProducts = filterProducts();
             const container = document.getElementById('productGrid');
-            
-            // Clear existing content
             container.innerHTML = '';
 
-            // Create and add product cards
-            const cards = filteredProducts.map((product, index) => 
-                createProductCard(product, index)
-            );
+            // Duplicate products if needed to fill the orbit
+            const productsToShow = [...filteredProducts];
+            if (productsToShow.length < 9) {
+                while (productsToShow.length < 9) {
+                    productsToShow.push(...filteredProducts.slice(0, Math.min(filteredProducts.length, 9 - productsToShow.length)));
+                }
+            }
 
-            cards.forEach(card => container.appendChild(card));
+            productsToShow.forEach((product, index) => {
+                const card = createProductCard(product, index);
+                container.appendChild(card);
+            });
 
-            // Position cards radially after a short delay to ensure DOM is ready
-            setTimeout(() => positionCardsRadially(cards), 100);
+            // Position cards on orbit after adding to DOM
+            setTimeout(() => {
+                positionCardsOnOrbit();
+            }, 100);
         }
 
-        // Initialize page
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            updateTitles();
+            updateCategoryTitle();
             renderProducts();
-            
-            // Re-position on resize
+
+            // Update orbital positions on scroll
+            window.addEventListener('scroll', updateOrbitalPositions);
+
+            // Recalculate on resize
             window.addEventListener('resize', () => {
-                setTimeout(() => {
-                    const cards = document.querySelectorAll('.product-card');
-                    positionCardsRadially(Array.from(cards));
-                }, 100);
+                positionCardsOnOrbit();
             });
         });
     </script>
