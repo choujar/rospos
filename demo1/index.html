@@ -55,8 +55,23 @@
             background: rgba(0,0,0,0.1);
         }
 
-        .quadrant:hover {
-            transform: scale(1.02);
+        /* Zoom the background image instead of the whole quadrant */
+        .quadrant::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.4s ease;
+            z-index: 0;
+        }
+        
+        .quadrant:hover::after {
+            transform: scale(1.05);
         }
 
         .quadrant-1 {
@@ -77,10 +92,14 @@
 
         .quadrant-content {
             position: absolute;
-            bottom: 30px;
-            left: 30px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             color: white;
             z-index: 2;
+            text-align: center;
+            width: 100%;
+            padding: 20px;
         }
 
         .quadrant-title {
@@ -97,14 +116,14 @@
             font-weight: 400;
         }
 
-        /* Circular POSSHOP text */
+        /* Circular POSSHOP text - Doubled size */
         .circular-text {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
+            width: 400px;
+            height: 400px;
             z-index: 10;
             pointer-events: none;
         }
@@ -118,7 +137,7 @@
         .circular-text text {
             fill: #2c2c2c;
             font-family: 'Josefin Sans', sans-serif;
-            font-size: 24px;
+            font-size: 48px;
             font-weight: 600;
             letter-spacing: 3px;
         }
@@ -172,8 +191,11 @@
             }
             
             .quadrant-content {
-                bottom: 20px;
-                left: 20px;
+                /* Keep centered on mobile */
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 15px;
             }
             
             .nav-links {
@@ -188,12 +210,12 @@
             }
             
             .circular-text {
-                width: 150px;
-                height: 150px;
+                width: 300px;
+                height: 300px;
             }
             
             .circular-text text {
-                font-size: 18px;
+                font-size: 36px;
             }
         }
     </style>
@@ -236,11 +258,11 @@
         </div>
 
         <div class="circular-text">
-            <svg viewBox="0 0 200 200">
+            <svg viewBox="0 0 400 400">
                 <defs>
-                    <path id="circle" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"/>
+                    <path id="circle" d="M 200, 200 m -150, 0 a 150,150 0 1,1 300,0 a 150,150 0 1,1 -300,0"/>
                 </defs>
-                <text font-size="24">
+                <text font-size="48">
                     <textPath href="#circle">
                         POSSHOP • POSSHOP • POSSHOP • 
                     </textPath>
